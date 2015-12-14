@@ -36,8 +36,6 @@ class Application(ttk.Frame):
         # Create a quit button that closes the window, make the text red
         self.QUIT = ttk.Button(self, text="Quit", command=root.destroy)
 
-        # TODO: use .grid geometry to pack widgets
-
         self.numberLabel.grid(row=0, column=0, columnspan=2)
         self.numberGen.grid(row=1, column=0)
         self.QUIT.grid(row=1, column=1)
