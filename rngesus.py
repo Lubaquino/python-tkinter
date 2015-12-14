@@ -38,16 +38,22 @@ class Application(ttk.Frame):
 
         # TODO: use .grid geometry to pack widgets
 
-        self.numberLabel.pack(side="top")
-        self.numberGen.pack()
-        self.QUIT.pack(side="bottom")
+        self.numberLabel.grid(row=0, column=0, columnspan=2)
+        self.numberGen.grid(row=1, column=0)
+        self.QUIT.grid(row=1, column=1)
 
     # Create the number generate function
     def generateNum(self):
         self.numText.set(str(randint(1, 10)))
 
+# Create a tkinter class object
+# This object is needed for a Frame to be created
 root = ttk.Tk()
-
+# Set the default size of the root tkinter object
+root.geometry("150x50")
+# Lock the window size
+root.resizable(width=False, height=False)
+# Create the application, make it the parent object
 app = Application(master=root)
-
+# Start the program
 app.mainloop()
