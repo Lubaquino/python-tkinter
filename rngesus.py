@@ -48,8 +48,6 @@ class Application(ttk.Frame):
 
 root = ttk.Tk()
 
-root.geometry("300x200")
-
 app = Application(master=root)
 
 app.mainloop()
