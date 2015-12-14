@@ -27,7 +27,7 @@ class Application(ttk.Frame):
         self.numberGen["text"] = "Generate a number"
         # Define what numberGen will do when clicked
         self.numberGen["command"] = self.generateNum
-        self.numberGen.bind('<Button-1>', self.updateText)
+        self.numberGen.bind('<ButtonRelease-1>', self.updateText)
         # Create label to display number
         self.numberLabel = ttk.Label(self, textvariable=self.numText)
         # Create a quit button that closes the window, make the text red
@@ -35,18 +35,18 @@ class Application(ttk.Frame):
 
         # TODO: use .grid geometry to pack widgets
 
-        self.numberLabel.pack()
+        self.numberLabel.pack(side="top")
         self.numberGen.pack()
         self.QUIT.pack(side="bottom")
 
     # Create the number generate function
     def generateNum(self):
         self.numText = str(randint(1, 10))
+        return self.numText
 
     # Create text update event function
     def updateText(self, event):
-        self.numberLabel.setvar(self.numText.get())
-        root.update_idletasks()
+        self.numberLabel = self.numText
 
 root = ttk.Tk()
 
