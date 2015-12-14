@@ -26,7 +26,7 @@ class Application(ttk.Frame):
         # Create button to generate random number
         self.numberGen = ttk.Button(self)
         # Overlay some text over the number generator button
-        self.numberGen["text"] = "Generate a number"
+        self.numberGen["text"] = "Generate"
         # Define what numberGen will do when clicked
         self.numberGen["command"] = self.generateNum
         # Create label to display number
