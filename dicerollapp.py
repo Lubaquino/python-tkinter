@@ -25,27 +25,28 @@ class Application(tk.Frame):
         self.dLabel = tk.Label(self, text=" d ")
         self.timesLabel = tk.Label(self, text=" times.")
         self.resultsVar = tk.StringVar()
-        self.resultsLable = tk.Label(self)
+        self.resultsLable = tk.Label(self, textvariable=self.resultsVar)
         # TODO: create 2 combo boxes
         self.numDiceVar = tk.StringVar()
         self.numDiceCombo = ttk.Combobox(self, state="readonly", textvariable=self.numDiceVar)
         self.diceSizeVar = tk.StringVar()
         self.diceSizeCombo = ttk.Combobox(self, state="readonly", textvariable=self.diceSizeVar)
-        # TODO: create 1 text fields for input
-        self.rollTimesVar = tk.IntVar()
-        self.rollTimes = tk.Entry(self, textvariable=self.rollTimesVar)
 
-# TODO: create dice rolling function
+        # TODO: arrange each widget in the window
+
+# create dice rolling function
     def rollDie(self, dieSize):
-        # TODO: roll one die with randint
+        # roll one die with randint
         return randint(1, dieSize)
 
     def diceRolls(self, dieSize, diceNum):
-        # TODO: roll 'diceNum' dice of size 'dieSize'
+        # roll 'diceNum' dice of size 'dieSize'
         rollDict = {}
+        rollTotal = 0
         for i in diceNum:
-            rollDict[i] = randint(1, dieSize)
-        return rollDict
+            rollDict[i] = self.rollDie(dieSize)
+            rollTotal += rollDict[i]
+        return rollDict, rollTotal
 
 # TODO: create data validation for the entry widget
 
