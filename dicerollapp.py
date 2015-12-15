@@ -28,9 +28,15 @@ class Application(tk.Frame):
         self.resultsLable = tk.Label(self, textvariable=self.resultsVar)
         # TODO: create 2 combo boxes
         self.numDiceVar = tk.StringVar()
-        self.numDiceCombo = ttk.Combobox(self, state="readonly", textvariable=self.numDiceVar)
-        self.diceSizeVar = tk.StringVar()
-        self.diceSizeCombo = ttk.Combobox(self, state="readonly", textvariable=self.diceSizeVar)
+        self.numDiceCombo = ttk.Combobox(self, state="readonly",
+                                         justify="center",
+                                         textvariable=self.numDiceVar)
+        self.numDiceCombo["values"] = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        self.dieSizeVar = tk.StringVar()
+        self.dieSizeCombo = ttk.Combobox(self, state="readonly",
+                                         justify="center",
+                                         textvariable=self.dieSizeVar)
+        self.dieSizeCombo["values"] = (4, 6, 8, 10, 12, 20, 100)
 
         # TODO: arrange each widget in the window
 
@@ -53,4 +59,3 @@ class Application(tk.Frame):
 # TODO: error handlers
 
 # TODO: specify size of window, create instance, launch window
-
