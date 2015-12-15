@@ -20,20 +20,34 @@ class Application(tk.Frame):
         self.rollDice["text"] = "Roll!"
         # TODO: create frame to house text output
         self.outputFrame = tk.Frame(self)
-        # TODO: create 3 labels
+        # TODO: create 4 labels
         self.rollLabel = tk.Label(self, text="Roll ")
         self.dLabel = tk.Label(self, text=" d ")
         self.timesLabel = tk.Label(self, text=" times.")
+        self.resultsVar = tk.StringVar()
+        self.resultsLable = tk.Label(self)
         # TODO: create 2 combo boxes
-        numDiceVar = tk.StringVar()
-        self.numDiceCombo = ttk.Combobox(self, state="readonly", textvariable=numDiceVar)
-        diceSizeVar = tk.StringVar()
-        self.diceSizeCombo = ttk.Combobox(self, state="readonly", textvariable=diceSizeVar)
-        # TODO: create 2 text fields - one for input, one for output
-        rollTimesVar = tk.IntVar()
-        self.rollTimes = tk.Entry(self, textvariable=rollTimesVar)
+        self.numDiceVar = tk.StringVar()
+        self.numDiceCombo = ttk.Combobox(self, state="readonly", textvariable=self.numDiceVar)
+        self.diceSizeVar = tk.StringVar()
+        self.diceSizeCombo = ttk.Combobox(self, state="readonly", textvariable=self.diceSizeVar)
+        # TODO: create 1 text fields for input
+        self.rollTimesVar = tk.IntVar()
+        self.rollTimes = tk.Entry(self, textvariable=self.rollTimesVar)
 
 # TODO: create dice rolling function
+    def rollDie(self, dieSize):
+        # TODO: roll one die with randint
+        return randint(1, dieSize)
+
+    def diceRolls(self, dieSize, diceNum):
+        # TODO: roll 'diceNum' dice of size 'dieSize'
+        rollDict = {}
+        for i in diceNum:
+            rollDict[i] = randint(1, dieSize)
+        return rollDict
+
+# TODO: create data validation for the entry widget
 
 # TODO: error handlers
 
