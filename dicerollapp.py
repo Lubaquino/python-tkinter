@@ -52,7 +52,13 @@ class Application(tk.Frame):
         for i in diceNum:
             rollDict[i] = self.rollDie(dieSize)
             rollTotal += rollDict[i]
-        return rollDict, rollTotal
+        return self.dictToString(rollDict), rollTotal
+
+    def dictToString(self, dict):
+        results = ""
+        results.join('{}{}'.format(k, v) for k, v in sorted(dict.items()))
+        return results
+
 
 # TODO: create data validation for the entry widget
 
