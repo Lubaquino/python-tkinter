@@ -52,8 +52,8 @@ class Application(Frame):
         # create one button to roll the dice
         self.rollButton = Button(self,
                                  text="Roll!",
-                                 command=self.diceRolls(self.dieSizeVar,
-                                                        self.numDiceVar))
+                                 command=self.diceRolls(self.dieSizeVar.get(),
+                                                        self.numDiceVar.get()))
 
         # TODO: arrange each widget in the window
         self.rollLabel.pack(side="left")
@@ -76,7 +76,7 @@ class Application(Frame):
         for i in range(diceNum):
             rollDict[i] = self.rollDie(dieSize)
             rollTotal += rollDict[i]
-        self.resultsVar.set(self.dictToString(rollDict) + "\nTotal = " + rollTotal)
+        self.resultsVar.set(self.dictToString(rollDict) + "\nTotal = " + str(rollTotal))
 
     def dictToString(self, dict):
         results = ""
