@@ -26,10 +26,11 @@ class Application(tk.Frame):
                                text=" d ")
         self.resultsVar = tk.StringVar()
         self.resultsLabel = tk.Label(self,
+                                     text="See results here!",
                                      textvariable=self.resultsVar)
 
         # create 2 combo boxes
-        self.numDiceVar = tk.StringVar()
+        self.numDiceVar = tk.IntVar()
         self.numDiceCombo = ttk.Combobox(self.labelComboFrame,
                                          state="readonly",
                                          justify="center",
@@ -37,7 +38,7 @@ class Application(tk.Frame):
                                          textvariable=self.numDiceVar)
         self.numDiceCombo["values"] = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
         self.numDiceCombo.current(0)
-        self.dieSizeVar = tk.StringVar()
+        self.dieSizeVar = tk.IntVar()
         self.dieSizeCombo = ttk.Combobox(self.labelComboFrame,
                                          state="readonly",
                                          justify="center",
@@ -48,8 +49,9 @@ class Application(tk.Frame):
 
         # create one button to roll the dice
         self.rollButton = tk.Button(self,
-                                    text="Roll!")
-                                    #command=self.diceRolls(self.dieSizeVar, self.numDiceVar)
+                                    text="Roll!",
+                                    command=self.diceRolls(self.dieSizeVar,
+                                                           self.numDiceVar))
 
         # TODO: arrange each widget in the window
         self.rollLabel.pack(side="left")
@@ -70,8 +72,8 @@ class Application(tk.Frame):
         rollDict = {}
         rollTotal = 0
         i = 0
-        while i < int(diceNum):
-            rollDict[i] = self.rollDie(int(dieSize))
+        for i in range(1, diceNum):
+            rollDict[i] = self.rollDie(dieSize)
             rollTotal += rollDict[i]
         self.resultsVar.set(self.dictToString(rollDict) + "\nTotal = " + rollTotal)
 
