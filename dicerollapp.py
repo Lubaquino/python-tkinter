@@ -19,15 +19,11 @@ class Application(tk.Frame):
         self.rollDice = tk.Button(self)
         self.rollDice["text"] = "Roll!"
 
-        # create frame to house text output
-        self.outputFrame = tk.Frame(self)
-
-        # create 4 labels
+        # create 3 labels
         self.rollLabel = tk.Label(self, text="Roll ")
         self.dLabel = tk.Label(self, text=" d ")
-        self.timesLabel = tk.Label(self, text=" times.")
         self.resultsVar = tk.StringVar()
-        self.resultsLable = tk.Label(self, textvariable=self.resultsVar)
+        self.resultsLabel = tk.Label(self, textvariable=self.resultsVar)
 
         # create 2 combo boxes
         self.numDiceVar = tk.StringVar()
@@ -44,6 +40,12 @@ class Application(tk.Frame):
         self.dieSizeCombo.current(5)
 
         # TODO: arrange each widget in the window
+        self.rollLabel.grid(row=0, column=0)
+        self.numDiceCombo.grid(row=0, column=1)
+        self.dLabel.grid(row=0, column=2)
+        self.dieSizeCombo.grid(row=0, column=3)
+        self.rollDice.grid(row=2, column=0, columnspan=4)
+        self.resultsLabel.grid(row=0, column=4, rowspan=3)
 
 # create dice rolling function
     def rollDie(self, dieSize):
@@ -57,14 +59,14 @@ class Application(tk.Frame):
         for i in diceNum:
             rollDict[i] = self.rollDie(dieSize)
             rollTotal += rollDict[i]
-        return self.dictToString(rollDict) + "\nTotal = " + rollTotal
+        self.resultsVar.set(self.dictToString(rollDict) + "\nTotal = " + rollTotal)
 
     def dictToString(self, dict):
         results = ""
         results.join('Roll {}: {}\n'.format(k, v) for k, v in sorted(dict.items()))
         return results
 
-# TODO: specify size of window, create instance, launch window
+# create instance, launch window
 if __name__ == '__main__':
     root = tk.Tk()
     app = Application(root)
