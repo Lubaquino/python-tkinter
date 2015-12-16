@@ -16,28 +16,37 @@ class Application(tk.Frame):
 # create widgets in separate function
     def createWidgets(self):
 
+        # create frame to house label and combobox
+        self.labelComboFrame = tk.Frame(self)
+
         # create 3 labels
-        self.rollLabel = tk.Label(self, text="Roll ")
-        self.dLabel = tk.Label(self, text=" d ")
+        self.rollLabel = tk.Label(self.labelComboFrame,
+                                  text="Roll ")
+        self.dLabel = tk.Label(self.labelComboFrame,
+                               text=" d ")
         self.resultsVar = tk.StringVar()
-        self.resultsLabel = tk.Label(self, textvariable=self.resultsVar)
+        self.resultsLabel = tk.Label(self,
+                                     textvariable=self.resultsVar)
 
         # create 2 combo boxes
         self.numDiceVar = tk.StringVar()
-        self.numDiceCombo = ttk.Combobox(self, state="readonly",
+        self.numDiceCombo = ttk.Combobox(self.labelComboFrame,
+                                         state="readonly",
                                          justify="center",
                                          textvariable=self.numDiceVar)
         self.numDiceCombo["values"] = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
         self.numDiceCombo.current(0)
         self.dieSizeVar = tk.StringVar()
-        self.dieSizeCombo = ttk.Combobox(self, state="readonly",
+        self.dieSizeCombo = ttk.Combobox(self.labelComboFrame,
+                                         state="readonly",
                                          justify="center",
                                          textvariable=self.dieSizeVar)
         self.dieSizeCombo["values"] = (4, 6, 8, 10, 12, 20, 100)
         self.dieSizeCombo.current(5)
 
         # create one button to roll the dice
-        self.rollButton = tk.Button(self, text="Roll!",
+        self.rollButton = tk.Button(self,
+                                    text="Roll!",
                                     command=self.diceRolls(self.dieSizeVar, self.numDiceVar))
 
         # TODO: arrange each widget in the window
