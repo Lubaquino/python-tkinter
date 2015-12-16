@@ -33,6 +33,7 @@ class Application(tk.Frame):
         self.numDiceCombo = ttk.Combobox(self.labelComboFrame,
                                          state="readonly",
                                          justify="center",
+                                         width=2,
                                          textvariable=self.numDiceVar)
         self.numDiceCombo["values"] = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
         self.numDiceCombo.current(0)
@@ -40,21 +41,23 @@ class Application(tk.Frame):
         self.dieSizeCombo = ttk.Combobox(self.labelComboFrame,
                                          state="readonly",
                                          justify="center",
+                                         width=2,
                                          textvariable=self.dieSizeVar)
         self.dieSizeCombo["values"] = (4, 6, 8, 10, 12, 20, 100)
         self.dieSizeCombo.current(5)
 
         # create one button to roll the dice
         self.rollButton = tk.Button(self,
-                                    text="Roll!",
-                                    command=self.diceRolls(self.dieSizeVar, self.numDiceVar))
+                                    text="Roll!")
+                                    #command=self.diceRolls(self.dieSizeVar, self.numDiceVar)
 
         # TODO: arrange each widget in the window
-        self.rollLabel.grid(row=0, column=0)
-        self.numDiceCombo.grid(row=0, column=1)
-        self.dLabel.grid(row=0, column=2)
-        self.dieSizeCombo.grid(row=0, column=3)
-        self.rollButton.grid(row=2, column=2)
+        self.rollLabel.pack(side="left")
+        self.numDiceCombo.pack(side="left")
+        self.dLabel.pack(side="left")
+        self.dieSizeCombo.pack(side="left")
+        self.labelComboFrame.grid(row=0, column=0, columnspan=4, padx=5, pady=5)
+        self.rollButton.grid(row=2, column=1, columnspan=2, pady=5)
         self.resultsLabel.grid(row=0, column=4, rowspan=3)
 
 # create dice rolling function
