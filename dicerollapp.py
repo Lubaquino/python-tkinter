@@ -2,14 +2,14 @@ __author__ = 'cbartel'
 
 # import relevant modules - random, tkinter
 from random import randint
-import tkinter as tk
+from tkinter import *
 from tkinter import ttk
 
 # initialize app
-class Application(tk.Frame):
+class Application(Frame):
 
     def __init__(self, master=None):
-        tk.Frame.__init__(self, master)
+        Frame.__init__(self, master)
         self.pack()
         self.createWidgets()
 
@@ -17,20 +17,21 @@ class Application(tk.Frame):
     def createWidgets(self):
 
         # create frame to house label and combobox
-        self.labelComboFrame = tk.Frame(self)
+        self.labelComboFrame = Frame(self)
 
         # create 3 labels
-        self.rollLabel = tk.Label(self.labelComboFrame,
-                                  text="Roll ")
-        self.dLabel = tk.Label(self.labelComboFrame,
-                               text=" d ")
-        self.resultsVar = tk.StringVar()
-        self.resultsLabel = tk.Label(self,
-                                     text="See results here!",
-                                     textvariable=self.resultsVar)
+        self.rollLabel = Label(self.labelComboFrame,
+                               text="Roll ")
+        self.dLabel = Label(self.labelComboFrame,
+                            text=" d ")
+        self.resultsVar = StringVar()
+        self.resultsLabel = Label(self,
+                                  text="See results here!",
+                                  textvariable=self.resultsVar)
 
         # create 2 combo boxes
-        self.numDiceVar = tk.IntVar()
+        self.numDiceVar = IntVar()
+        self.numDiceVar.set(0)
         self.numDiceCombo = ttk.Combobox(self.labelComboFrame,
                                          state="readonly",
                                          justify="center",
@@ -38,7 +39,8 @@ class Application(tk.Frame):
                                          textvariable=self.numDiceVar)
         self.numDiceCombo["values"] = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
         self.numDiceCombo.current(0)
-        self.dieSizeVar = tk.IntVar()
+        self.dieSizeVar = IntVar()
+        self.dieSizeVar.set(0)
         self.dieSizeCombo = ttk.Combobox(self.labelComboFrame,
                                          state="readonly",
                                          justify="center",
@@ -48,10 +50,10 @@ class Application(tk.Frame):
         self.dieSizeCombo.current(5)
 
         # create one button to roll the dice
-        self.rollButton = tk.Button(self,
-                                    text="Roll!",
-                                    command=self.diceRolls(self.dieSizeVar,
-                                                           self.numDiceVar))
+        self.rollButton = Button(self,
+                                 text="Roll!",
+                                 command=self.diceRolls(self.dieSizeVar,
+                                                        self.numDiceVar))
 
         # TODO: arrange each widget in the window
         self.rollLabel.pack(side="left")
@@ -71,8 +73,7 @@ class Application(tk.Frame):
         # roll 'diceNum' dice of size 'dieSize'
         rollDict = {}
         rollTotal = 0
-        i = 0
-        for i in range(1, diceNum):
+        for i in range(diceNum):
             rollDict[i] = self.rollDie(dieSize)
             rollTotal += rollDict[i]
         self.resultsVar.set(self.dictToString(rollDict) + "\nTotal = " + rollTotal)
@@ -84,6 +85,6 @@ class Application(tk.Frame):
 
 # create instance, launch window
 if __name__ == '__main__':
-    root = tk.Tk()
+    root = Tk()
     app = Application(root)
     root.mainloop()
