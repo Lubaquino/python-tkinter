@@ -15,9 +15,6 @@ class Application(tk.Frame):
 
 # create widgets in separate function
     def createWidgets(self):
-        # create one button to roll the dice
-        self.rollDice = tk.Button(self)
-        self.rollDice["text"] = "Roll!"
 
         # create 3 labels
         self.rollLabel = tk.Label(self, text="Roll ")
@@ -39,12 +36,16 @@ class Application(tk.Frame):
         self.dieSizeCombo["values"] = (4, 6, 8, 10, 12, 20, 100)
         self.dieSizeCombo.current(5)
 
+        # create one button to roll the dice
+        self.rollButton = tk.Button(self, text="Roll!",
+                                    command=self.diceRolls(self.dieSizeVar, self.numDiceVar))
+
         # TODO: arrange each widget in the window
         self.rollLabel.grid(row=0, column=0)
         self.numDiceCombo.grid(row=0, column=1)
         self.dLabel.grid(row=0, column=2)
         self.dieSizeCombo.grid(row=0, column=3)
-        self.rollDice.grid(row=2, column=0, columnspan=4)
+        self.rollButton.grid(row=2, column=2)
         self.resultsLabel.grid(row=0, column=4, rowspan=3)
 
 # create dice rolling function
@@ -56,8 +57,9 @@ class Application(tk.Frame):
         # roll 'diceNum' dice of size 'dieSize'
         rollDict = {}
         rollTotal = 0
-        for i in diceNum:
-            rollDict[i] = self.rollDie(dieSize)
+        i = 0
+        while i < int(diceNum):
+            rollDict[i] = self.rollDie(int(dieSize))
             rollTotal += rollDict[i]
         self.resultsVar.set(self.dictToString(rollDict) + "\nTotal = " + rollTotal)
 
