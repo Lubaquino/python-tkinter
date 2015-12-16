@@ -1,7 +1,8 @@
 __author__ = 'cbartel'
 
 # Here we import tkinter
-import tkinter as ttk
+from tkinter import *
+from tkinter import ttk
 from random import randint
 
 # Build the window using tkinter
@@ -19,26 +20,29 @@ class Application(ttk.Frame):
 
     # We want buttons and text box, so we need a .createWidgets function
     def createWidgets(self):
+        # Create frame widget to house buttons
+        self.buttonFrame = ttk.Frame(self)
         # Declare our string variable to be connected to our label
-        self.numText = ttk.StringVar()
+        self.numText = StringVar()
         # Give our string var a default value when initialized
         self.numText.set("0")
         # Create button to generate random number
-        self.numberGen = ttk.Button(self)
+        self.numberGen = Button(self.buttonFrame)
         # Overlay some text over the number generator button
         self.numberGen["text"] = "Generate"
         # Define what numberGen will do when clicked
         self.numberGen["command"] = self.generateNum
         # Create label to display number
-        self.numberLabel = ttk.Label(self)
+        self.numberLabel = Label(self)
         # Hook our label up to our string variable
         self.numberLabel["textvariable"] = self.numText
         # Create a quit button that closes the window, make the text red
-        self.QUIT = ttk.Button(self, text="Quit", command=root.destroy)
+        self.QUIT = Button(self.buttonFrame, text="Quit", command=root.destroy)
 
-        self.numberLabel.grid(row=0, column=0, columnspan=2)
-        self.numberGen.grid(row=1, column=0)
-        self.QUIT.grid(row=1, column=1)
+        self.numberLabel.grid(row=0, column=0, padx=5, pady=5)
+        self.buttonFrame.grid(row=0, column=1, padx=5, pady=5)
+        self.numberGen.pack(side="top")
+        self.QUIT.pack(side="top")
 
     # Create the number generate function
     def generateNum(self):
@@ -46,11 +50,7 @@ class Application(ttk.Frame):
 
 # Create a tkinter class object
 # This object is needed for a Frame to be created
-root = ttk.Tk()
-# Set the default size of the root tkinter object
-root.geometry("150x50")
-# Lock the window size
-root.resizable(width=False, height=False)
+root = Tk()
 # Create the application, make it the parent object
 app = Application(master=root)
 # Start the program
