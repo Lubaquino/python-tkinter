@@ -39,10 +39,10 @@ class Application(ttk.Frame):
         # Create a quit button that closes the window, make the text red
         self.QUIT = Button(self.buttonFrame, text="Quit", command=root.destroy)
 
-        self.numberLabel.grid(row=0, column=0, padx=5, pady=5)
-        self.buttonFrame.grid(row=0, column=1, padx=5, pady=5)
-        self.numberGen.pack(side="top")
-        self.QUIT.pack(side="top")
+        self.numberLabel.pack(side="top")
+        self.buttonFrame.pack(side="top")
+        self.numberGen.pack(side="left")
+        self.QUIT.pack(side="left")
 
     # Create the number generate function
     def generateNum(self):
