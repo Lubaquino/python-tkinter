@@ -30,7 +30,7 @@ class Application(Frame):
         self.resultsVar.set("Roll the dice!")
         self.resultsLabel = Label(self.labelComboFrame,
                                   text="See results here!",
-                                  width=10,
+                                  width=11,
                                   height=5,
                                   textvariable=self.resultsVar)
 
@@ -66,7 +66,7 @@ class Application(Frame):
         self.labelComboFrame.pack(side="top")
         self.rollButton.pack(fill="both")
         self.buttonFrameFrame.pack(side="left")
-        self.resultsLabel.pack()
+        self.resultsLabel.pack(side="top")
         self.resultsFrame.pack(side="left")
 
 # create dice rolling function
@@ -80,6 +80,7 @@ class Application(Frame):
         for i in range(diceNum):
             rollDict[i] = self.rollDie(dieSize)
         self.resultsVar.set(self.dictToString(rollDict) + "\n")
+        print(self.resultsVar.get())
 
     def dictToString(self, dict):
         results = ""
