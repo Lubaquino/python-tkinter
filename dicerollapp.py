@@ -7,13 +7,13 @@ from tkinter import ttk
 
 class Application(Frame):
 
-# initialize app
+    # initialize app
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.pack()
         self.createWidgets()
 
-# create widgets in separate function
+    # create widgets in separate function
     def createWidgets(self):
 
         # create 3 frames
@@ -69,7 +69,7 @@ class Application(Frame):
         self.resultsLabel.pack(side="top")
         self.resultsFrame.pack(side="left")
 
-# create dice rolling function
+    # create dice rolling function
     def rollDie(self, dieSize):
         # roll one die with randint
         return randint(1, dieSize)
@@ -79,7 +79,7 @@ class Application(Frame):
         rollDict = {}
         for i in range(diceNum):
             rollDict[i] = self.rollDie(dieSize)
-        self.resultsVar.set(self.dictToString(rollDict) + "\n")
+        self.resultsVar.set(self.dictToString(rollDict))
         print(self.resultsVar.get())
 
     def dictToString(self, dict):
