@@ -5,9 +5,9 @@ from random import randint
 from tkinter import *
 from tkinter import ttk
 
-# initialize app
 class Application(Frame):
 
+# initialize app
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.pack()
@@ -27,6 +27,7 @@ class Application(Frame):
         self.dLabel = Label(self.labelComboFrame,
                             text=" d ")
         self.resultsVar = StringVar()
+        self.resultsVar.set("Roll the dice!")
         self.resultsLabel = Label(self.labelComboFrame,
                                   text="See results here!",
                                   width=10,
@@ -41,6 +42,7 @@ class Application(Frame):
                                          width=2,
                                          textvariable=self.numDiceVar)
         self.numDiceCombo["values"] = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        self.numDiceCombo.current(0)
         self.dieSizeVar = IntVar()
         self.dieSizeCombo = ttk.Combobox(self.labelComboFrame,
                                          state="readonly",
@@ -48,6 +50,7 @@ class Application(Frame):
                                          width=2,
                                          textvariable=self.dieSizeVar)
         self.dieSizeCombo["values"] = (4, 6, 8, 10, 12, 20, 100)
+        self.dieSizeCombo.current(5)
 
         # create one button to roll the dice
         self.rollButton = Button(self.buttonFrameFrame,
@@ -74,11 +77,9 @@ class Application(Frame):
     def diceRolls(self, dieSize, diceNum):
         # roll 'diceNum' dice of size 'dieSize'
         rollDict = {}
-        rollTotal = 0
         for i in range(diceNum):
             rollDict[i] = self.rollDie(dieSize)
-            rollTotal += rollDict[i]
-        self.resultsVar.set(self.dictToString(rollDict) + "\nTotal = " + str(rollTotal))
+        self.resultsVar.set(self.dictToString(rollDict) + "\n")
 
     def dictToString(self, dict):
         results = ""
