@@ -47,7 +47,7 @@ class Application(Frame):
         self.dieSizeCombo = ttk.Combobox(self.labelComboFrame,
                                          state="readonly",
                                          justify="center",
-                                         width=2,
+                                         width=3,
                                          textvariable=self.dieSizeVar)
         self.dieSizeCombo["values"] = (4, 6, 8, 10, 12, 20, 100)
         self.dieSizeCombo.current(5)
@@ -55,8 +55,7 @@ class Application(Frame):
         # create one button to roll the dice
         self.rollButton = Button(self.buttonFrameFrame,
                                  text="Roll!",
-                                 command=self.diceRolls(int(self.dieSizeCombo.get()),
-                                                        int(self.numDiceCombo.get())))
+                                 command=self.diceRolls)
 
         # Create a quit button that closes the window
         self.QUIT = Button(self.buttonFrameFrame, text="Quit", command=root.destroy)
@@ -77,8 +76,10 @@ class Application(Frame):
         # roll one die with randint
         return randint(1, dieSize)
 
-    def diceRolls(self, dieSize, diceNum):
+    def diceRolls(self):
         # roll 'diceNum' dice of size 'dieSize'
+        dieSize = int(self.dieSizeCombo.get())
+        diceNum = int(self.numDiceCombo.get())
         rollDict = {}
         for i in range(diceNum):
             rollDict[i+1] = self.rollDie(dieSize)
