@@ -16,17 +16,17 @@ class Application(Frame):
     # create widgets in separate function
     def createWidgets(self):
 
-        # create 3 frames
+        # create frames
         self.buttonFrameFrame = Frame(self)
         self.labelComboFrame = Frame(self.buttonFrameFrame)
 
-        # create 3 labels
+        # create labels
         self.rollLabel = Label(self.labelComboFrame,
                                text="Roll ")
         self.dLabel = Label(self.labelComboFrame,
                             text=" d ")
 
-        # create 2 combo boxes
+        # create combo box and link variable
         self.numDiceVar = IntVar()
         self.numDiceCombo = ttk.Combobox(self.labelComboFrame,
                                          state="readonly",
