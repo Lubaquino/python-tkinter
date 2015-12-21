@@ -28,10 +28,9 @@ class Application(Frame):
         self.resultsVar = StringVar()
         self.resultsVar.set("Roll the dice!")
         self.resultsLabel = Label(self,
-                                  text="See results here!",
                                   width=11,
                                   height=5,
-                                  textvariable=self.resultsVar.get())
+                                  textvariable=self.resultsVar)
 
         # create 2 combo boxes
         self.numDiceVar = IntVar()
@@ -54,8 +53,8 @@ class Application(Frame):
         # create one button to roll the dice
         self.rollButton = Button(self.buttonFrameFrame,
                                  text="Roll!",
-                                 command=self.diceRolls(self.dieSizeVar.get(),
-                                                        self.numDiceVar.get()))
+                                 command=self.diceRolls(int(self.dieSizeCombo.get()),
+                                                        int(self.numDiceCombo.get())))
 
         # arrange each widget in the window
         self.rollLabel.pack(side="left")
