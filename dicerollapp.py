@@ -19,7 +19,6 @@ class Application(Frame):
         # create 3 frames
         self.buttonFrameFrame = Frame(self)
         self.labelComboFrame = Frame(self.buttonFrameFrame)
-        self.resultsFrame = Frame(self)
 
         # create 3 labels
         self.rollLabel = Label(self.labelComboFrame,
@@ -28,11 +27,11 @@ class Application(Frame):
                             text=" d ")
         self.resultsVar = StringVar()
         self.resultsVar.set("Roll the dice!")
-        self.resultsLabel = Label(self.labelComboFrame,
+        self.resultsLabel = Label(self,
                                   text="See results here!",
                                   width=11,
                                   height=5,
-                                  textvariable=self.resultsVar)
+                                  textvariable=self.resultsVar.get())
 
         # create 2 combo boxes
         self.numDiceVar = IntVar()
@@ -64,10 +63,9 @@ class Application(Frame):
         self.dLabel.pack(side="left")
         self.dieSizeCombo.pack(side="left")
         self.labelComboFrame.pack(side="top")
-        self.rollButton.pack(fill="both")
+        self.rollButton.pack(fill="both", padx=3, pady=3)
         self.buttonFrameFrame.pack(side="left")
-        self.resultsLabel.pack(side="top")
-        self.resultsFrame.pack(side="left")
+        self.resultsLabel.pack(side="left", padx=5, pady=5)
 
     # create dice rolling function
     def rollDie(self, dieSize):
@@ -78,14 +76,8 @@ class Application(Frame):
         # roll 'diceNum' dice of size 'dieSize'
         rollDict = {}
         for i in range(diceNum):
-            rollDict[i] = self.rollDie(dieSize)
-        self.resultsVar.set(self.dictToString(rollDict))
-        print(self.resultsVar.get())
-
-    def dictToString(self, dict):
-        results = ""
-        results.join('Roll {}: {}\n'.format(k, v) for k, v in sorted(dict.items()))
-        return results
+            rollDict[i+1] = self.rollDie(dieSize)
+        self.resultsVar.set(str(rollDict))
 
 # create instance, launch window
 if __name__ == '__main__':
