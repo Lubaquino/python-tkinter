@@ -30,6 +30,8 @@ class Application(Frame):
         self.resultsLabel = Label(self,
                                   width=11,
                                   height=5,
+                                  relief=SUNKEN,
+                                  anchor=NW,
                                   textvariable=self.resultsVar)
 
         # create 2 combo boxes
@@ -56,6 +58,9 @@ class Application(Frame):
                                  command=self.diceRolls(int(self.dieSizeCombo.get()),
                                                         int(self.numDiceCombo.get())))
 
+        # Create a quit button that closes the window
+        self.QUIT = Button(self.buttonFrameFrame, text="Quit", command=root.destroy)
+
         # arrange each widget in the window
         self.rollLabel.pack(side="left")
         self.numDiceCombo.pack(side="left")
@@ -63,6 +68,7 @@ class Application(Frame):
         self.dieSizeCombo.pack(side="left")
         self.labelComboFrame.pack(side="top")
         self.rollButton.pack(fill="both", padx=3, pady=3)
+        self.QUIT.pack(fill="both", padx=3, pady=3)
         self.buttonFrameFrame.pack(side="left")
         self.resultsLabel.pack(side="left", padx=5, pady=5)
 
