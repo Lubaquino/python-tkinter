@@ -39,7 +39,7 @@ class Application(ttk.Frame):
         # Create a quit button that closes the window, make the text red
         self.QUIT = Button(self.buttonFrame, text="Quit", command=root.destroy)
 
-        self.numberLabel.grid(sticky=N+E+S+W)
+        self.numberLabel.grid(padx=5, pady=5, sticky=N+E+S+W)
         self.buttonFrame.grid(padx=5, pady=5, sticky=N+E+S+W)
         self.numberGen.grid(sticky=W+E)
         self.QUIT.grid(sticky=W+E)
