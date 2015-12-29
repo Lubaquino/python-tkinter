@@ -60,11 +60,15 @@ class Application(Frame):
         self.resultSum = 0
 
         # Create scrollbar widget for new text field
-        self.scrollbar = Scrollbar(self)
+        self.scrollbarY = Scrollbar(self)
+        #self.scrollbarX = Scrollbar(self)
 
         # Attach listbox to scrollbar
-        self.resultsList.config(yscrollcommand=self.scrollbar.set)
-        self.scrollbar.config(command=self.resultsList.yview)
+        self.resultsList.config(yscrollcommand=self.scrollbarY.set)
+                                #xscrollcommand=self.scrollbarX.set)
+        self.scrollbarY.config(command=self.resultsList.yview)
+        #self.scrollbarX.config(command=self.resultsList.xview)
+
 
         # Create checkbox if the user wants to see the total
         self.checkValue = IntVar()
@@ -84,7 +88,8 @@ class Application(Frame):
         self.QUIT.pack(fill="both", padx=3, pady=3)
         self.buttonFrameFrame.pack(side="left")
         self.resultsList.pack(side="left", padx=5, pady=5)
-        self.scrollbar.pack(side="left", fill=Y)
+        self.scrollbarY.pack(side="left", fill=Y)
+        #self.scrollbarX.pack(side="bottom", fill=X)
 
     # create dice rolling function
     def rollDie(self, dieSize):
@@ -92,16 +97,19 @@ class Application(Frame):
         return randint(1, dieSize)
 
     def diceRolls(self):
-        # clear previous value from sum value
-        self.resultSum = 0
-        # clear previous values from rollList
-        self.resultsList.delete(0, END)
-        # roll 'diceNum' dice of size 'dieSize'
-        dieSize = int(self.dieSizeCombo.get())
-        diceNum = int(self.numDiceEntry.get())
-        for i in range(diceNum):
-            self.resultsList.insert(END, self.rollDie(dieSize))
-        self.sumResultsList(self.resultsList)
+        try:
+            # clear previous value from sum value
+            self.resultSum = 0
+            # clear previous values from rollList
+            self.resultsList.delete(0, END)
+            # roll 'diceNum' dice of size 'dieSize'
+            dieSize = int(self.dieSizeCombo.get())
+            diceNum = int(self.numDiceEntry.get())
+            for i in range(diceNum):
+                self.resultsList.insert(END, self.rollDie(dieSize))
+            self.sumResultsList(self.resultsList)
+        except (TypeError, ValueError) as e:
+            self.resultsList.insert(END, str(e))
 
     def sumResultsList(self, rl):
         if self.checkValue.get():
