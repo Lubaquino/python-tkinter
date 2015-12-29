@@ -31,7 +31,6 @@ class Application(Frame):
         self.numDiceEntry = Entry(self.labelComboFrame,
                                   width=3,
                                   textvariable=self.numDiceVar)
-        # TODO: hook up validate entry class to entry widget
 
         self.numDiceEntry.delete(0, END)
         self.numDiceEntry.insert(0, 1)
@@ -89,8 +88,6 @@ class Application(Frame):
         diceNum = int(self.numDiceEntry.get())
         for i in range(diceNum):
             self.resultsList.insert(END, self.rollDie(dieSize))
-
-    # TODO: create validation function
 
 # create instance, launch window
 if __name__ == '__main__':
