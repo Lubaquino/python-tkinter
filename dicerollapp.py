@@ -32,7 +32,7 @@ class Application(Frame):
                                   width=3,
                                   textvariable=self.numDiceVar)
         # TODO: hook up validate entry class to entry widget
-        
+
         self.numDiceEntry.delete(0, END)
         self.numDiceEntry.insert(0, 1)
 
@@ -90,51 +90,7 @@ class Application(Frame):
         for i in range(diceNum):
             self.resultsList.insert(END, self.rollDie(dieSize))
 
-# validate entry widget
-class ValidatingEntry(Entry):
-
-    def __init__(self, master, value="", **kw):
-        Entry.__init__(self, master, **kw)
-        self.__value = value
-        self.__variable = StringVar()
-        self.__variable.set(value)
-        self.__variable.trace("w", self.__callback)
-        self.config(textvariable=self.__variable)
-        self.results = StringVar()
-        if self.__value is None:
-            self.results.set(None)
-        else:
-            self.results.set(self.__value)
-
-    def __callback(self, *dummy):
-        value = self.__variable.get()
-        newvalue = self.validate(value)
-        if newvalue is None:
-            self.__variable.set(self.__value)
-        elif newvalue != value:
-            self.__value = newvalue
-            self.__variable.set(newvalue)
-        else:
-            self.__value = value
-
-    def validate(self, value):
-        # override: return value, new value, or None if invalid
-        self.results.set(value)
-        return value
-
-    def getresults(self, value):
-        # override: return value, or chopped value in the case of ChopLengthEntry
-        return self.results.get()
-
-class IntegerEntry(ValidatingEntry):
-    def validate(self, value):
-        try:
-            if value:
-                v = int(value)
-                self.results.set(value)
-            return value
-        except ValueError:
-            return None
+    # TODO: create validation function
 
 # create instance, launch window
 if __name__ == '__main__':
