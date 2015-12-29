@@ -123,4 +123,5 @@ class Application(Frame):
 if __name__ == '__main__':
     root = Tk()
     app = Application(master=root)
+    app.master.title("Roll the dice!")
     root.mainloop()
