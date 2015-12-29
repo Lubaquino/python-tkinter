@@ -61,13 +61,13 @@ class Application(Frame):
 
         # Create scrollbar widget for new text field
         self.scrollbarY = Scrollbar(self)
-        #self.scrollbarX = Scrollbar(self)
+        self.scrollbarX = Scrollbar(self)
 
         # Attach listbox to scrollbar
-        self.resultsList.config(yscrollcommand=self.scrollbarY.set)
-                                #xscrollcommand=self.scrollbarX.set)
+        self.resultsList.config(yscrollcommand=self.scrollbarY.set,
+                                xscrollcommand=self.scrollbarX.set)
         self.scrollbarY.config(command=self.resultsList.yview)
-        #self.scrollbarX.config(command=self.resultsList.xview)
+        self.scrollbarX.config(command=self.resultsList.xview)
 
 
         # Create checkbox if the user wants to see the total
@@ -88,8 +88,8 @@ class Application(Frame):
         self.QUIT.pack(fill="both", padx=3, pady=3)
         self.buttonFrameFrame.pack(side="left")
         self.resultsList.pack(side="left", padx=5, pady=5)
-        self.scrollbarY.pack(side="left", fill=Y)
-        #self.scrollbarX.pack(side="bottom", fill=X)
+        self.scrollbarY.pack(side="right", fill=Y)
+        self.scrollbarX.pack(side="bottom", fill=X)
 
     # create dice rolling function
     def rollDie(self, dieSize):
