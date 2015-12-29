@@ -56,6 +56,9 @@ class Application(Frame):
         # Create listbox for each roll
         self.resultsList = Listbox(self)
 
+        # Create total value to use for summing values if checkbox true
+        self.resultSum = 0
+
         # Create scrollbar widget for new text field
         self.scrollbar = Scrollbar(self)
 
@@ -81,6 +84,8 @@ class Application(Frame):
         return randint(1, dieSize)
 
     def diceRolls(self):
+        # clear previous value from sum value
+        self.resultSum = 0
         # clear previous values from rollList
         self.resultsList.delete(0, END)
         # roll 'diceNum' dice of size 'dieSize'
@@ -88,6 +93,12 @@ class Application(Frame):
         diceNum = int(self.numDiceEntry.get())
         for i in range(diceNum):
             self.resultsList.insert(END, self.rollDie(dieSize))
+        self.sumResultsList(self.resultsList)
+
+    def sumResultsList(self, rl):
+        for i in rl:
+            self.resultSum += i
+        print(self.resultSum)
 
 # create instance, launch window
 if __name__ == '__main__':
