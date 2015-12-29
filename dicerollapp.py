@@ -30,8 +30,7 @@ class Application(Frame):
         self.numDiceVar = IntVar()
         self.numDiceEntry = Entry(self.labelComboFrame,
                                   width=3,
-                                  textvariable=self.numDiceVar,
-                                  )
+                                  textvariable=self.numDiceVar)
         self.numDiceEntry.delete(0, END)
         self.numDiceEntry.insert(0, 1)
 
