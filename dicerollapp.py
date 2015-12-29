@@ -26,11 +26,13 @@ class Application(Frame):
         self.dLabel = Label(self.labelComboFrame,
                             text=" d ")
 
-        # TODO: create entry widget
+        # create entry widget
         self.numDiceVar = IntVar()
         self.numDiceEntry = Entry(self.labelComboFrame,
                                   width=3,
                                   textvariable=self.numDiceVar)
+        # TODO: hook up validate entry class to entry widget
+        
         self.numDiceEntry.delete(0, END)
         self.numDiceEntry.insert(0, 1)
 
