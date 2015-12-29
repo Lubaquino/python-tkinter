@@ -26,15 +26,16 @@ class Application(Frame):
         self.dLabel = Label(self.labelComboFrame,
                             text=" d ")
 
-        # create combo box and link variable
+        # TODO: create entry widget
         self.numDiceVar = IntVar()
-        self.numDiceCombo = ttk.Combobox(self.labelComboFrame,
-                                         state="readonly",
-                                         justify="center",
-                                         width=2,
-                                         textvariable=self.numDiceVar)
-        self.numDiceCombo["values"] = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
-        self.numDiceCombo.current(0)
+        self.numDiceEntry = Entry(self.labelComboFrame,
+                                  width=3,
+                                  textvariable=self.numDiceVar,
+                                  )
+        self.numDiceEntry.delete(0, END)
+        self.numDiceEntry.insert(0, 1)
+
+        # create combo box and link variable
         self.dieSizeVar = IntVar()
         self.dieSizeCombo = ttk.Combobox(self.labelComboFrame,
                                          state="readonly",
@@ -64,7 +65,7 @@ class Application(Frame):
 
         # arrange each widget in the window
         self.rollLabel.pack(side="left")
-        self.numDiceCombo.pack(side="left")
+        self.numDiceEntry.pack(side="left")
         self.dLabel.pack(side="left")
         self.dieSizeCombo.pack(side="left")
         self.labelComboFrame.pack(side="top")
@@ -84,9 +85,55 @@ class Application(Frame):
         self.resultsList.delete(0, END)
         # roll 'diceNum' dice of size 'dieSize'
         dieSize = int(self.dieSizeCombo.get())
-        diceNum = int(self.numDiceCombo.get())
+        diceNum = int(self.numDiceEntry.get())
         for i in range(diceNum):
             self.resultsList.insert(END, self.rollDie(dieSize))
+
+# validate entry widget
+class ValidatingEntry(Entry):
+
+    def __init__(self, master, value="", **kw):
+        Entry.__init__(self, master, **kw)
+        self.__value = value
+        self.__variable = StringVar()
+        self.__variable.set(value)
+        self.__variable.trace("w", self.__callback)
+        self.config(textvariable=self.__variable)
+        self.results = StringVar()
+        if self.__value is None:
+            self.results.set(None)
+        else:
+            self.results.set(self.__value)
+
+    def __callback(self, *dummy):
+        value = self.__variable.get()
+        newvalue = self.validate(value)
+        if newvalue is None:
+            self.__variable.set(self.__value)
+        elif newvalue != value:
+            self.__value = newvalue
+            self.__variable.set(newvalue)
+        else:
+            self.__value = value
+
+    def validate(self, value):
+        # override: return value, new value, or None if invalid
+        self.results.set(value)
+        return value
+
+    def getresults(self, value):
+        # override: return value, or chopped value in the case of ChopLengthEntry
+        return self.results.get()
+
+class IntegerEntry(ValidatingEntry):
+    def validate(self, value):
+        try:
+            if value:
+                v = int(value)
+                self.results.set(value)
+            return value
+        except ValueError:
+            return None
 
 # create instance, launch window
 if __name__ == '__main__':
