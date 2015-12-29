@@ -62,9 +62,16 @@ class Application(Frame):
         # Create scrollbar widget for new text field
         self.scrollbar = Scrollbar(self)
 
-        # attach listbox to scrollbar
+        # Attach listbox to scrollbar
         self.resultsList.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.resultsList.yview)
+
+        # Create checkbox if the user wants to see the total
+        self.checkValue = IntVar()
+        self.totalCheck = Checkbutton(self.buttonFrameFrame,
+                                      variable=self.checkValue,
+                                      text="Display total?")
+
 
         # arrange each widget in the window
         self.rollLabel.pack(side="left")
@@ -72,6 +79,7 @@ class Application(Frame):
         self.dLabel.pack(side="left")
         self.dieSizeCombo.pack(side="left")
         self.labelComboFrame.pack(side="top")
+        self.totalCheck.pack(fill="both", padx=3, pady=3)
         self.rollButton.pack(fill="both", padx=3, pady=3)
         self.QUIT.pack(fill="both", padx=3, pady=3)
         self.buttonFrameFrame.pack(side="left")
@@ -96,9 +104,10 @@ class Application(Frame):
         self.sumResultsList(self.resultsList)
 
     def sumResultsList(self, rl):
-        for i in rl:
-            self.resultSum += i
-        print(self.resultSum)
+        if self.checkValue.get():
+            for i in range(rl.size()):
+                self.resultSum += int(rl.get(i))
+            self.resultsList.insert(END, "Total = " + str(self.resultSum))
 
 # create instance, launch window
 if __name__ == '__main__':
