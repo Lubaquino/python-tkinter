@@ -19,6 +19,7 @@ class Application(Frame):
         # create frames
         self.buttonFrameFrame = Frame(self)
         self.labelComboFrame = Frame(self.buttonFrameFrame)
+        self.listScrollFrame = Frame(self)
 
         # create labels
         self.rollLabel = Label(self.labelComboFrame,
@@ -54,14 +55,14 @@ class Application(Frame):
         self.QUIT = Button(self.buttonFrameFrame, text="Quit", command=root.destroy)
 
         # Create listbox for each roll
-        self.resultsList = Listbox(self)
+        self.resultsList = Listbox(self.listScrollFrame)
 
         # Create total value to use for summing values if checkbox true
         self.resultSum = 0
 
         # Create scrollbar widget for new text field
-        self.scrollbarY = Scrollbar(self)
-        self.scrollbarX = Scrollbar(self)
+        self.scrollbarY = Scrollbar(self.listScrollFrame)
+        self.scrollbarX = Scrollbar(self.listScrollFrame, orient=HORIZONTAL)
 
         # Attach listbox to scrollbar
         self.resultsList.config(yscrollcommand=self.scrollbarY.set,
@@ -87,9 +88,10 @@ class Application(Frame):
         self.rollButton.pack(fill="both", padx=3, pady=3)
         self.QUIT.pack(fill="both", padx=3, pady=3)
         self.buttonFrameFrame.pack(side="left")
-        self.resultsList.pack(side="left", padx=5, pady=5)
-        self.scrollbarY.pack(side="right", fill=Y)
-        self.scrollbarX.pack(side="bottom", fill=X)
+        self.listScrollFrame.pack(side="left")
+        self.resultsList.grid(row=0, column=0)
+        self.scrollbarY.grid(row=0, column=1, sticky=N+S)
+        self.scrollbarX.grid(row=1, column=0, sticky=W+E)
 
     # create dice rolling function
     def rollDie(self, dieSize):
