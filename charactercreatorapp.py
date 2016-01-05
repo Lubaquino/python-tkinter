@@ -22,10 +22,37 @@ class Application(Frame):
         self.statsFrame = Frame(self)
 
         # TODO: create 19 labels
+        self.raceLabel = Label(self)
+        self.classLabel = Label(self)
+        self.roll1Label = Label(self)
+        self.roll2Label = Label(self)
+        self.roll3Label = Label(self)
+        self.statsLabel = Label(self)
+        self.raceBonusLabel = Label(self)
+        self.strLabel = Label(self)
+        self.dexLabel = Label(self)
+        self.conLabel = Label(self)
+        self.intLabel = Label(self)
+        self.wisLabel = Label(self)
+        self.chaLabel = Label(self)
+        self.strBonusLabel = Label(self)
+        self.dexBonusLabel = Label(self)
+        self.conBonusLabel = Label(self)
+        self.intBonusLabel = Label(self)
+        self.wisBonusLabel = Label(self)
+        self.chaBonusLabel = Label(self)
 
         # TODO: create 6 text fields
+        self.strText = Text(self)
+        self.dexText = Text(self)
+        self.conText = Text(self)
+        self.intText = Text(self)
+        self.wisText = Text(self)
+        self.chaText = Text(self)
 
         # TODO: create 2 drop-downs
+        self.raceDropMenu = ttk.Combobox(self)
+        self.classDropMenu = ttk.Combobox(self)
 
         # TODO: create 3 buttons
 
