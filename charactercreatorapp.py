@@ -48,24 +48,58 @@ class Application(Frame):
                               text="Wis")
         self.chaLabel = Label(self.statsFrame,
                               text="Cha")
-        self.strBonusLabel = Label(self.statsFrame)
-        self.dexBonusLabel = Label(self.statsFrame)
-        self.conBonusLabel = Label(self.statsFrame)
-        self.intBonusLabel = Label(self.statsFrame)
-        self.wisBonusLabel = Label(self.statsFrame)
-        self.chaBonusLabel = Label(self.statsFrame)
+        self.strBonusLabelVar = StringVar()
+        self.strBonusLabel = Label(self.statsFrame,
+                                   width=2,
+                                   textvariable=self.strBonusLabelVar)
+        self.dexBonusLabelVar = StringVar()
+        self.dexBonusLabel = Label(self.statsFrame,
+                                   width=2,
+                                   textvariable=self.dexBonusLabelVar)
+        self.conBonusLabelVar = StringVar()
+        self.conBonusLabel = Label(self.statsFrame,
+                                   width=2,
+                                   textvariable=self.conBonusLabelVar)
+        self.intBonusLabelVar = StringVar()
+        self.intBonusLabel = Label(self.statsFrame,
+                                   width=2,
+                                   textvariable=self.intBonusLabelVar)
+        self.wisBonusLabelVar = StringVar()
+        self.wisBonusLabel = Label(self.statsFrame,
+                                   width=2,
+                                   textvariable=self.wisBonusLabelVar)
+        self.chaBonusLabelVar = StringVar()
+        self.chaBonusLabel = Label(self.statsFrame,
+                                   width=2,
+                                   textvariable=self.chaBonusLabelVar)
 
         # TODO: create 6 entry fields
-        self.strText = Entry(self.statsFrame)
-        self.dexText = Entry(self.statsFrame)
-        self.conText = Entry(self.statsFrame)
-        self.intText = Entry(self.statsFrame)
-        self.wisText = Entry(self.statsFrame)
-        self.chaText = Entry(self.statsFrame)
+        self.strEntryVar = IntVar()
+        self.strEntry = Entry(self.statsFrame,
+                              textvariable=self.strEntryVar)
+        self.dexEntryVar = IntVar()
+        self.dexEntry = Entry(self.statsFrame,
+                              textvariable=self.dexEntryVar)
+        self.conEntryVar = IntVar()
+        self.conEntry = Entry(self.statsFrame,
+                              textvariable=self.conEntryVar)
+        self.intEntryVar = IntVar()
+        self.intEntry = Entry(self.statsFrame,
+                              textvariable=self.intEntryVar)
+        self.wisEntryVar = IntVar()
+        self.wisEntry = Entry(self.statsFrame,
+                              textvariable=self.wisEntryVar)
+        self.chaEntryVar = IntVar()
+        self.chaEntry = Entry(self.statsFrame,
+                              textvariable=self.chaEntryVar)
 
         # TODO: create 2 drop-downs
-        self.raceDropMenu = ttk.Combobox(self.raceClassFrame)
-        self.classDropMenu = ttk.Combobox(self.raceClassFrame)
+        self.raceDropMenuVar = StringVar()
+        self.raceDropMenu = ttk.Combobox(self.raceClassFrame,
+                                         textvariable=self.raceDropMenuVar)
+        self.classDropMenuVar = StringVar()
+        self.classDropMenu = ttk.Combobox(self.raceClassFrame,
+                                          textvariable=self.classDropMenuVar)
 
         # TODO: create 3 buttons
         self.createButton = Button(self.buttonFrame,
@@ -76,9 +110,16 @@ class Application(Frame):
                                  text="Quit")
 
         # TODO: create 3 radio buttons
-        self.roll1Radio = Radiobutton(self.radioDiceFrame)
-        self.roll2Radio = Radiobutton(self.radioDiceFrame)
-        self.roll3Radio = Radiobutton(self.radioDiceFrame)
+        self.rollMasterVar = IntVar()
+        self.roll1Radio = Radiobutton(self.radioDiceFrame,
+                                      variable=self.rollMasterVar,
+                                      value=1)
+        self.roll2Radio = Radiobutton(self.radioDiceFrame,
+                                      variable=self.rollMasterVar,
+                                      value=2)
+        self.roll3Radio = Radiobutton(self.radioDiceFrame,
+                                      variable=self.rollMasterVar,
+                                      value=3)
 
         # TODO: arrange the frames within the window
         self.raceClassFrame.grid(row=0, column=0)
@@ -104,17 +145,17 @@ class Application(Frame):
         self.statsLabel.grid(row=0, column=0, columnspan=2)
         self.raceBonusLabel.grid(row=0, column=2)
         self.strLabel.grid(row=1, column=0)
-        self.strText.grid(row=1, column=1)
+        self.strEntry.grid(row=1, column=1)
         self.dexLabel.grid(row=2, column=0)
-        self.dexText.grid(row=2, column=1)
+        self.dexEntry.grid(row=2, column=1)
         self.conLabel.grid(row=3, column=0)
-        self.conText.grid(row=3, column=1)
+        self.conEntry.grid(row=3, column=1)
         self.intLabel.grid(row=4, column=0)
-        self.intText.grid(row=4, column=1)
+        self.intEntry.grid(row=4, column=1)
         self.wisLabel.grid(row=5, column=0)
-        self.wisText.grid(row=5, column=1)
+        self.wisEntry.grid(row=5, column=1)
         self.chaLabel.grid(row=6, column=0)
-        self.chaText.grid(row=6, column=1)
+        self.chaEntry.grid(row=6, column=1)
         self.strBonusLabel.grid(row=1, column=2)
         self.dexBonusLabel.grid(row=2, column=2)
         self.conBonusLabel.grid(row=3, column=2)
