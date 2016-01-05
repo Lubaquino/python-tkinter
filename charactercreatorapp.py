@@ -101,16 +101,18 @@ class Application(Frame):
         self.raceDropMenu["values"] = ('Human', 'Dwarf', 'Elf', 'Gnome',
                                        'Half-Elf', 'Half-Orc', 'Halfling')
         self.raceDropMenu.current(6)
-        self.raceDropMenu.bind('<<ComboboxSelected>>', self.sayHi())
+        self.raceDropMenu.bind('<<ComboboxSelected>>',
+                               self.sayHi1)
         self.classDropMenuVar = StringVar()
         self.classDropMenu = ttk.Combobox(self.raceClassFrame,
                                           state="readonly",
                                           textvariable=self.classDropMenuVar)
-        self.classDropMenu["values"] = ('Barbarian', 'Bard', 'Clerid', 'Druid',
+        self.classDropMenu["values"] = ('Barbarian', 'Bard', 'Cleric', 'Druid',
                                         'Fighter', 'Monk', 'Paladin', 'Ranger',
                                         'Rogue', 'Sorcerer', 'Wizard')
         self.classDropMenu.current(8)
-        self.classDropMenu.bind('<<ComboboxSelected>>', self.sayHi())
+        self.classDropMenu.bind('<<ComboboxSelected>>',
+                                self.sayHi2)
 
         # TODO: create 3 buttons
         self.createButton = Button(self.buttonFrame,
@@ -181,8 +183,17 @@ class Application(Frame):
 
     # TODO: function to roll stats
 
-    def sayHi(self):
-        print("Hi")
+    def sayHi1(self, event):
+        if event:
+            print("Hi")
+        else:
+            print("Bye")
+
+    def sayHi2(self, event):
+        if event:
+            print("Hi")
+        else:
+            print("Bye")
 
 if __name__ == '__main__':
     root = Tk()
