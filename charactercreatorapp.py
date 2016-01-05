@@ -178,11 +178,6 @@ class Application(Frame):
         self.chaBonusLabel.grid(row=6, column=2)
 
     # TODO: function to determine racial bonus
-
-    # TODO: function to export character to .txt file
-
-    # TODO: function to roll stats
-
     def sayHi1(self, event):
         if event:
             print("Hi")
@@ -194,6 +189,10 @@ class Application(Frame):
             print("Hi")
         else:
             print("Bye")
+
+    # TODO: function to export character to .txt file
+
+    # TODO: function to roll stats
 
 if __name__ == '__main__':
     root = Tk()
