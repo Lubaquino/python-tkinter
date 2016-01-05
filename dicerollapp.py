@@ -58,7 +58,7 @@ class Application(Frame):
         self.resultsList = Listbox(self.listScrollFrame)
 
         # Create total value to use for summing values if checkbox true
-        self.resultSum = 0
+        self.resultSum = int
 
         # Create scrollbar widget for new text field
         self.scrollbarY = Scrollbar(self.listScrollFrame)
@@ -75,8 +75,8 @@ class Application(Frame):
         self.checkValue = IntVar()
         self.totalCheck = Checkbutton(self.buttonFrameFrame,
                                       variable=self.checkValue,
-                                      text="Display total?")
-
+                                      text="Display total?",
+                                      command=self.appendSum)
 
         # arrange each widget in the window
         self.rollLabel.pack(side="left")
@@ -114,10 +114,21 @@ class Application(Frame):
             self.resultsList.insert(END, str(e))
 
     def sumResultsList(self, rl):
+        for i in range(rl.size()):
+            self.resultSum += int(rl.get(i))
         if self.checkValue.get():
-            for i in range(rl.size()):
-                self.resultSum += int(rl.get(i))
             self.resultsList.insert(END, "Total = " + str(self.resultSum))
+        return self.resultSum
+
+    def appendSum(self):
+        if self.checkValue.get():
+            if self.resultsList.get(END) == "Total = " + str(self.resultSum):
+                pass
+            else:
+                self.resultsList.insert(END, "Total = " + str(self.resultSum))
+        elif not self.checkValue.get():
+            if self.resultsList.get(END) == "Total = " + str(self.resultSum):
+                self.resultsList.delete(END)
 
 # create instance, launch window
 if __name__ == '__main__':
