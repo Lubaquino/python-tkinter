@@ -32,14 +32,22 @@ class Application(Frame):
                                 text="3 of 4d6 x 6")
         self.roll3Label = Label(self.radioDiceFrame,
                                 text="3d6 x 6")
-        self.statsLabel = Label(self.statsFrame)
-        self.raceBonusLabel = Label(self.statsFrame)
-        self.strLabel = Label(self.statsFrame)
-        self.dexLabel = Label(self.statsFrame)
-        self.conLabel = Label(self.statsFrame)
-        self.intLabel = Label(self.statsFrame)
-        self.wisLabel = Label(self.statsFrame)
-        self.chaLabel = Label(self.statsFrame)
+        self.statsLabel = Label(self.statsFrame,
+                                text="Stats")
+        self.raceBonusLabel = Label(self.statsFrame,
+                                    text="Racial Bonus")
+        self.strLabel = Label(self.statsFrame,
+                              text="Str")
+        self.dexLabel = Label(self.statsFrame,
+                              text="Dex")
+        self.conLabel = Label(self.statsFrame,
+                              text="Con")
+        self.intLabel = Label(self.statsFrame,
+                              text="Int")
+        self.wisLabel = Label(self.statsFrame,
+                              text="Wis")
+        self.chaLabel = Label(self.statsFrame,
+                              text="Cha")
         self.strBonusLabel = Label(self.statsFrame)
         self.dexBonusLabel = Label(self.statsFrame)
         self.conBonusLabel = Label(self.statsFrame)
@@ -47,13 +55,13 @@ class Application(Frame):
         self.wisBonusLabel = Label(self.statsFrame)
         self.chaBonusLabel = Label(self.statsFrame)
 
-        # TODO: create 6 text fields
-        self.strText = Text(self.statsFrame)
-        self.dexText = Text(self.statsFrame)
-        self.conText = Text(self.statsFrame)
-        self.intText = Text(self.statsFrame)
-        self.wisText = Text(self.statsFrame)
-        self.chaText = Text(self.statsFrame)
+        # TODO: create 6 entry fields
+        self.strText = Entry(self.statsFrame)
+        self.dexText = Entry(self.statsFrame)
+        self.conText = Entry(self.statsFrame)
+        self.intText = Entry(self.statsFrame)
+        self.wisText = Entry(self.statsFrame)
+        self.chaText = Entry(self.statsFrame)
 
         # TODO: create 2 drop-downs
         self.raceDropMenu = ttk.Combobox(self.raceClassFrame)
@@ -93,6 +101,26 @@ class Application(Frame):
         self.quitButton.grid(row=2, column=0, sticky=W+E)
 
         self.statsFrame.grid(row=0, column=1)
+        self.statsLabel.grid(row=0, column=0, columnspan=2)
+        self.raceBonusLabel.grid(row=0, column=2)
+        self.strLabel.grid(row=1, column=0)
+        self.strText.grid(row=1, column=1)
+        self.dexLabel.grid(row=2, column=0)
+        self.dexText.grid(row=2, column=1)
+        self.conLabel.grid(row=3, column=0)
+        self.conText.grid(row=3, column=1)
+        self.intLabel.grid(row=4, column=0)
+        self.intText.grid(row=4, column=1)
+        self.wisLabel.grid(row=5, column=0)
+        self.wisText.grid(row=5, column=1)
+        self.chaLabel.grid(row=6, column=0)
+        self.chaText.grid(row=6, column=1)
+        self.strBonusLabel.grid(row=1, column=2)
+        self.dexBonusLabel.grid(row=2, column=2)
+        self.conBonusLabel.grid(row=3, column=2)
+        self.intBonusLabel.grid(row=4, column=2)
+        self.wisBonusLabel.grid(row=5, column=2)
+        self.chaBonusLabel.grid(row=6, column=2)
 
     # TODO: function to determine racial bonus
 
