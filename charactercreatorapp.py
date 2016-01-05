@@ -101,6 +101,7 @@ class Application(Frame):
         self.raceDropMenu["values"] = ('Human', 'Dwarf', 'Elf', 'Gnome',
                                        'Half-Elf', 'Half-Orc', 'Halfling')
         self.raceDropMenu.current(6)
+        self.raceDropMenu.bind('<<ComboboxSelected>>', self.sayHi())
         self.classDropMenuVar = StringVar()
         self.classDropMenu = ttk.Combobox(self.raceClassFrame,
                                           state="readonly",
@@ -109,6 +110,7 @@ class Application(Frame):
                                         'Fighter', 'Monk', 'Paladin', 'Ranger',
                                         'Rogue', 'Sorcerer', 'Wizard')
         self.classDropMenu.current(8)
+        self.classDropMenu.bind('<<ComboboxSelected>>', self.sayHi())
 
         # TODO: create 3 buttons
         self.createButton = Button(self.buttonFrame,
@@ -116,7 +118,8 @@ class Application(Frame):
         self.saveButton = Button(self.buttonFrame,
                                  text="Save")
         self.quitButton = Button(self.buttonFrame,
-                                 text="Quit")
+                                 text="Quit",
+                                 command=root.destroy)
 
         # TODO: create 3 radio buttons
         self.rollMasterVar = IntVar()
@@ -177,6 +180,9 @@ class Application(Frame):
     # TODO: function to export character to .txt file
 
     # TODO: function to roll stats
+
+    def sayHi(self):
+        print("Hi")
 
 if __name__ == '__main__':
     root = Tk()
