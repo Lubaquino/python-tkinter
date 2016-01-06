@@ -180,13 +180,23 @@ class Application(Frame):
     # TODO: function to determine racial bonus
     def sayHi1(self, event):
         if event:
-            print("Hi")
+            if self.rollMasterVar.get() == 1 | self.rollMasterVar.get() == 2:
+                for i in range(4):
+                    print("Hi"+str(i))
+            else:
+                for i in range(3):
+                    print("Hi"+str(i))
         else:
             print("Bye")
 
     def sayHi2(self, event):
         if event:
-            print("Hi")
+            if self.rollMasterVar.get() == 1 | self.rollMasterVar.get() == 2:
+                for i in range(4):
+                    print("Hi"+str(i))
+            else:
+                for i in range(3):
+                    print("Hi"+str(i))
         else:
             print("Bye")
 
