@@ -37,17 +37,35 @@ class Application(Frame):
         self.raceBonusLabel = Label(self.statsFrame,
                                     text="Racial\nBonus")
         self.strLabel = Label(self.statsFrame,
-                              text="Str")
+                              text="Str",
+                              fg="white",
+                              bg="black",
+                              relief="ridge")
         self.dexLabel = Label(self.statsFrame,
-                              text="Dex")
+                              text="Dex",
+                              fg="white",
+                              bg="black",
+                              relief="ridge")
         self.conLabel = Label(self.statsFrame,
-                              text="Con")
+                              text="Con",
+                              fg="white",
+                              bg="black",
+                              relief="ridge")
         self.intLabel = Label(self.statsFrame,
-                              text="Int")
+                              text="Int",
+                              fg="white",
+                              bg="black",
+                              relief="ridge")
         self.wisLabel = Label(self.statsFrame,
-                              text="Wis")
+                              text="Wis",
+                              fg="white",
+                              bg="black",
+                              relief="ridge")
         self.chaLabel = Label(self.statsFrame,
-                              text="Cha")
+                              text="Cha",
+                              fg="white",
+                              bg="black",
+                              relief="ridge")
         self.strBonusLabelVar = StringVar()
         self.strBonusLabel = Label(self.statsFrame,
                                    textvariable=self.strBonusLabelVar)
@@ -158,17 +176,17 @@ class Application(Frame):
         self.statsFrame.grid(row=0, column=1, rowspan=3)
         self.abilitiesLabel.grid(row=0, column=0, columnspan=2)
         self.raceBonusLabel.grid(row=0, column=2)
-        self.strLabel.grid(row=1, column=0)
+        self.strLabel.grid(row=1, column=0, sticky=W+E)
         self.strEntry.grid(row=1, column=1)
-        self.dexLabel.grid(row=2, column=0)
+        self.dexLabel.grid(row=2, column=0, sticky=W+E)
         self.dexEntry.grid(row=2, column=1)
-        self.conLabel.grid(row=3, column=0)
+        self.conLabel.grid(row=3, column=0, sticky=W+E)
         self.conEntry.grid(row=3, column=1)
-        self.intLabel.grid(row=4, column=0)
+        self.intLabel.grid(row=4, column=0, sticky=W+E)
         self.intEntry.grid(row=4, column=1)
-        self.wisLabel.grid(row=5, column=0)
+        self.wisLabel.grid(row=5, column=0, sticky=W+E)
         self.wisEntry.grid(row=5, column=1)
-        self.chaLabel.grid(row=6, column=0)
+        self.chaLabel.grid(row=6, column=0, sticky=W+E)
         self.chaEntry.grid(row=6, column=1)
         self.strBonusLabel.grid(row=1, column=2)
         self.dexBonusLabel.grid(row=2, column=2)
@@ -202,9 +220,19 @@ class Application(Frame):
         try:
             if event:
                 if self.classDropMenuVar.get() == 'Barbarian':
-                    print('Barbarian')
+                    self.strLabel["fg"] = "green"
+                    self.conLabel["fg"] = "green"
+                    self.dexLabel["fg"] = "yellow"
+                    self.wisLabel["fg"] = "yellow"
+                    self.chaLabel["fg"] = "yellow"
+                    self.intLabel["fg"] = "red"
                 elif self.classDropMenuVar.get() == 'Bard':
-                    print('Bard')
+                    self.chaLabel["fg"] = "green"
+                    self.dexLabel["fg"] = "green"
+                    self.intLabel["fg"] = "yellow"
+                    self.wisLabel["fg"] = "yellow"
+                    self.conLabel["fg"] = "yellow"
+                    self.strLabel["fg"] = "red"
                 elif self.classDropMenuVar.get() == 'Cleric':
                     print('Cleric')
                 elif self.classDropMenuVar.get() == 'Druid':
