@@ -102,7 +102,7 @@ class Application(Frame):
                                        'Half-Elf', 'Half-Orc', 'Halfling')
         self.raceDropMenu.current(6)
         self.raceDropMenu.bind('<<ComboboxSelected>>',
-                               self.sayHi1)
+                               self.raceSelect)
         self.classDropMenuVar = StringVar()
         self.classDropMenu = ttk.Combobox(self.raceClassFrame,
                                           state="readonly",
@@ -178,27 +178,53 @@ class Application(Frame):
         self.chaBonusLabel.grid(row=6, column=2)
 
     # TODO: function to determine racial bonus
-    def sayHi1(self, event):
-        if event:
-            if self.rollMasterVar.get() == 1 | self.rollMasterVar.get() == 2:
-                for i in range(4):
-                    print("Hi"+str(i))
-            else:
-                for i in range(3):
-                    print("Hi"+str(i))
-        else:
-            print("Bye")
+    def raceSelect(self, event):
+        try:
+            if event:
+                if self.raceDropMenuVar.get() == 'Human':
+                    print('Human')
+                elif self.raceDropMenuVar.get() == 'Dwarf':
+                    print('Dwarf')
+                elif self.raceDropMenuVar.get() == 'Elf':
+                    print('Elf')
+                elif self.raceDropMenuVar.get() == 'Gnome':
+                    print('Gnome')
+                elif self.raceDropMenuVar.get() == 'Half-Elf':
+                    print('Half-Elf')
+                elif self.raceDropMenuVar.get() == 'Half-Orc':
+                    print('Half-Orc')
+                else:
+                    print('Halfling')
+        except:
+            print('Error reading virtual event!')
 
     def sayHi2(self, event):
-        if event:
-            if self.rollMasterVar.get() == 1 | self.rollMasterVar.get() == 2:
-                for i in range(4):
-                    print("Hi"+str(i))
-            else:
-                for i in range(3):
-                    print("Hi"+str(i))
-        else:
-            print("Bye")
+        try:
+            if event:
+                if self.classDropMenuVar.get() == 'Barbarian':
+                    pass
+                elif self.classDropMenuVar.get() == 'Bard':
+                    pass
+                elif self.classDropMenuVar.get() == 'Cleric':
+                    pass
+                elif self.classDropMenuVar.get() == 'Druid':
+                    pass
+                elif self.classDropMenuVar.get() == 'Fighter':
+                    pass
+                elif self.classDropMenuVar.get() == 'Monk':
+                    pass
+                elif self.classDropMenuVar.get() == 'Paladin':
+                    pass
+                elif self.classDropMenuVar.get() == 'Ranger':
+                    pass
+                elif self.classDropMenuVar.get() == 'Rogue':
+                    pass
+                elif self.classDropMenuVar.get() == 'Sorcerer':
+                    pass
+                else:
+                    pass
+        except:
+            print('Error reading virtual event!')
 
     # TODO: function to export character to .txt file
 
