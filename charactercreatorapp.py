@@ -222,19 +222,24 @@ class Application(Frame):
                 if self.classDropMenuVar.get() == 'Barbarian':
                     self.strLabel["fg"] = "green"
                     self.conLabel["fg"] = "green"
-                    self.dexLabel["fg"] = "yellow"
-                    self.wisLabel["fg"] = "yellow"
-                    self.chaLabel["fg"] = "yellow"
-                    self.intLabel["fg"] = "red"
+                    self.dexLabel["fg"] = "white"
+                    self.wisLabel["fg"] = "white"
+                    self.chaLabel["fg"] = "white"
+                    self.intLabel["fg"] = "white"
                 elif self.classDropMenuVar.get() == 'Bard':
                     self.chaLabel["fg"] = "green"
                     self.dexLabel["fg"] = "green"
-                    self.intLabel["fg"] = "yellow"
-                    self.wisLabel["fg"] = "yellow"
-                    self.conLabel["fg"] = "yellow"
-                    self.strLabel["fg"] = "red"
+                    self.intLabel["fg"] = "white"
+                    self.wisLabel["fg"] = "white"
+                    self.conLabel["fg"] = "white"
+                    self.strLabel["fg"] = "white"
                 elif self.classDropMenuVar.get() == 'Cleric':
-                    print('Cleric')
+                    self.wisLabel["fg"] = "green"
+                    self.chaLabel["fg"] = "green"
+                    self.intLabel["fg"] = "white"
+                    self.dexLabel["fg"] = "white"
+                    self.conLabel["fg"] = "white"
+                    self.strLabel["fg"] = "white"
                 elif self.classDropMenuVar.get() == 'Druid':
                     print('Druid')
                 elif self.classDropMenuVar.get() == 'Fighter':
