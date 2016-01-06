@@ -202,27 +202,27 @@ class Application(Frame):
         try:
             if event:
                 if self.classDropMenuVar.get() == 'Barbarian':
-                    pass
+                    print('Barbarian')
                 elif self.classDropMenuVar.get() == 'Bard':
-                    pass
+                    print('Bard')
                 elif self.classDropMenuVar.get() == 'Cleric':
-                    pass
+                    print('Cleric')
                 elif self.classDropMenuVar.get() == 'Druid':
-                    pass
+                    print('Druid')
                 elif self.classDropMenuVar.get() == 'Fighter':
-                    pass
+                    print('Fighter')
                 elif self.classDropMenuVar.get() == 'Monk':
-                    pass
+                    print('Monk')
                 elif self.classDropMenuVar.get() == 'Paladin':
-                    pass
+                    print('Paladin')
                 elif self.classDropMenuVar.get() == 'Ranger':
-                    pass
+                    print('Ranger')
                 elif self.classDropMenuVar.get() == 'Rogue':
-                    pass
+                    print('Rogue')
                 elif self.classDropMenuVar.get() == 'Sorcerer':
-                    pass
+                    print('Sorcerer')
                 else:
-                    pass
+                    print('Wizard')
         except:
             print('Error reading virtual event!')
 
