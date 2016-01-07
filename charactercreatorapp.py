@@ -221,41 +221,81 @@ class Application(Frame):
             if event:
                 if self.classDropMenuVar.get() == 'Barbarian':
                     self.strLabel["fg"] = "green"
-                    self.conLabel["fg"] = "green"
-                    self.dexLabel["fg"] = "white"
-                    self.wisLabel["fg"] = "white"
+                    self.conLabel["fg"] = "yellow"
+                    self.dexLabel["fg"] = "yellow"
+                    self.wisLabel["fg"] = "yellow"
                     self.chaLabel["fg"] = "white"
                     self.intLabel["fg"] = "white"
                 elif self.classDropMenuVar.get() == 'Bard':
                     self.chaLabel["fg"] = "green"
-                    self.dexLabel["fg"] = "green"
-                    self.intLabel["fg"] = "white"
+                    self.dexLabel["fg"] = "yellow"
+                    self.intLabel["fg"] = "yellow"
                     self.wisLabel["fg"] = "white"
                     self.conLabel["fg"] = "white"
                     self.strLabel["fg"] = "white"
                 elif self.classDropMenuVar.get() == 'Cleric':
                     self.wisLabel["fg"] = "green"
+                    self.conLabel["fg"] = "yellow"
+                    self.chaLabel["fg"] = "yellow"
+                    self.intLabel["fg"] = "white"
+                    self.dexLabel["fg"] = "white"
+                    self.strLabel["fg"] = "white"
+                elif self.classDropMenuVar.get() == 'Druid':
+                    self.wisLabel["fg"] = "green"
+                    self.dexLabel["fg"] = "yellow"
+                    self.chaLabel["fg"] = "white"
+                    self.intLabel["fg"] = "white"
+                    self.conLabel["fg"] = "white"
+                    self.strLabel["fg"] = "white"
+                elif self.classDropMenuVar.get() == 'Fighter':
+                    self.strLabel["fg"] = "green"
+                    self.dexLabel["fg"] = "yellow"
+                    self.conLabel["fg"] = "yellow"
+                    self.wisLabel["fg"] = "white"
+                    self.chaLabel["fg"] = "white"
+                    self.intLabel["fg"] = "white"
+                elif self.classDropMenuVar.get() == 'Monk':
+                    self.wisLabel["fg"] = "green"
+                    self.dexLabel["fg"] = "yellow"
+                    self.strLabel["fg"] = "yellow"
+                    self.chaLabel["fg"] = "white"
+                    self.intLabel["fg"] = "white"
+                    self.conLabel["fg"] = "white"
+                elif self.classDropMenuVar.get() == 'Paladin':
                     self.chaLabel["fg"] = "green"
+                    self.strLabel["fg"] = "yellow"
+                    self.wisLabel["fg"] = "yellow"
                     self.intLabel["fg"] = "white"
                     self.dexLabel["fg"] = "white"
                     self.conLabel["fg"] = "white"
-                    self.strLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Druid':
-                    print('Druid')
-                elif self.classDropMenuVar.get() == 'Fighter':
-                    print('Fighter')
-                elif self.classDropMenuVar.get() == 'Monk':
-                    print('Monk')
-                elif self.classDropMenuVar.get() == 'Paladin':
-                    print('Paladin')
                 elif self.classDropMenuVar.get() == 'Ranger':
-                    print('Ranger')
+                    self.dexLabel["fg"] = "green"
+                    self.strLabel["fg"] = "yellow"
+                    self.wisLabel["fg"] = "yellow"
+                    self.chaLabel["fg"] = "white"
+                    self.intLabel["fg"] = "white"
+                    self.conLabel["fg"] = "white"
                 elif self.classDropMenuVar.get() == 'Rogue':
-                    print('Rogue')
+                    self.dexLabel["fg"] = "green"
+                    self.intLabel["fg"] = "yellow"
+                    self.wisLabel["fg"] = "yellow"
+                    self.chaLabel["fg"] = "white"
+                    self.conLabel["fg"] = "white"
+                    self.strLabel["fg"] = "white"
                 elif self.classDropMenuVar.get() == 'Sorcerer':
-                    print('Sorcerer')
+                    self.chaLabel["fg"] = "green"
+                    self.dexLabel["fg"] = "yellow"
+                    self.conLabel["fg"] = "yellow"
+                    self.wisLabel["fg"] = "white"
+                    self.intLabel["fg"] = "white"
+                    self.strLabel["fg"] = "white"
                 else:
-                    print('Wizard')
+                    self.intLabel["fg"] = "green"
+                    self.dexLabel["fg"] = "yellow"
+                    self.conLabel["fg"] = "yellow"
+                    self.wisLabel["fg"] = "white"
+                    self.chaLabel["fg"] = "white"
+                    self.strLabel["fg"] = "white"
         except:
             print('Error reading virtual event!')
 
