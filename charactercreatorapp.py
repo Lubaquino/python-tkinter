@@ -111,6 +111,10 @@ class Application(Frame):
                               width=2,
                               textvariable=self.chaEntryVar)
 
+        # TODO: store each entry variable in array for calculation purposes
+        self.abilityList = [self.strEntryVar, self.dexEntryVar, self.conEntryVar,
+                            self.intEntryVar, self.wisEntryVar, self.chaEntryVar]
+
         # TODO: create 2 drop-downs
         self.raceDropMenuVar = StringVar()
         self.raceDropMenu = ttk.Combobox(self.raceClassFrame,
@@ -134,7 +138,8 @@ class Application(Frame):
 
         # TODO: create 3 buttons
         self.createButton = Button(self.buttonFrame,
-                                   text="Create")
+                                   text="Create",
+                                   command=self.rollAbilities)
         self.saveButton = Button(self.buttonFrame,
                                  text="Save")
         self.quitButton = Button(self.buttonFrame,
@@ -334,9 +339,30 @@ class Application(Frame):
         except:
             print('Error reading virtual event!')
 
-    # TODO: function to export character to .txt file
-
     # TODO: function to roll stats
+    def rollAbilities(self):
+        v = self.rollMasterVar.get()
+        try:
+            if v < 3:
+                for a in self.abilityList:
+                    diceList = []
+                    for i in range(4):
+                        diceList.append(randint(1, 6))
+                    diceList.remove(min(diceList))
+                    a.set(sum(diceList))
+            else:
+                for a in self.abilityList:
+                    diceList = []
+                    for i in range(3):
+                        diceList.append(randint(1, 6))
+                    a.set(sum(diceList))
+        except:
+            print('Error finding RadioButton value!')
+
+
+    # TODO: function to export character to .txt file
+    def saveCharacter(self):
+        print('Saved!')
 
 if __name__ == '__main__':
     root = Tk()
