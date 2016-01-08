@@ -130,7 +130,7 @@ class Application(Frame):
                                         'Rogue', 'Sorcerer', 'Wizard')
         self.classDropMenu.current(8)
         self.classDropMenu.bind('<<ComboboxSelected>>',
-                                self.sayHi2)
+                                self.classSelect)
 
         # TODO: create 3 buttons
         self.createButton = Button(self.buttonFrame,
@@ -251,7 +251,7 @@ class Application(Frame):
         except:
             print('Error reading virtual event!')
 
-    def sayHi2(self, event):
+    def classSelect(self, event):
         try:
             if event:
                 if self.classDropMenuVar.get() == 'Barbarian':
