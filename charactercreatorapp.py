@@ -200,19 +200,54 @@ class Application(Frame):
         try:
             if event:
                 if self.raceDropMenuVar.get() == 'Human':
-                    print('Human')
+                    self.strBonusLabelVar.set('')
+                    self.dexBonusLabelVar.set('')
+                    self.conBonusLabelVar.set('')
+                    self.intBonusLabelVar.set('')
+                    self.wisBonusLabelVar.set('')
+                    self.chaBonusLabelVar.set('')
                 elif self.raceDropMenuVar.get() == 'Dwarf':
-                    print('Dwarf')
+                    self.strBonusLabelVar.set('')
+                    self.dexBonusLabelVar.set('')
+                    self.conBonusLabelVar.set('+2')
+                    self.intBonusLabelVar.set('')
+                    self.wisBonusLabelVar.set('')
+                    self.chaBonusLabelVar.set('-2')
                 elif self.raceDropMenuVar.get() == 'Elf':
-                    print('Elf')
+                    self.strBonusLabelVar.set('')
+                    self.dexBonusLabelVar.set('+2')
+                    self.conBonusLabelVar.set('-2')
+                    self.intBonusLabelVar.set('')
+                    self.wisBonusLabelVar.set('')
+                    self.chaBonusLabelVar.set('')
                 elif self.raceDropMenuVar.get() == 'Gnome':
-                    print('Gnome')
+                    self.strBonusLabelVar.set('-2')
+                    self.dexBonusLabelVar.set('')
+                    self.conBonusLabelVar.set('+2')
+                    self.intBonusLabelVar.set('')
+                    self.wisBonusLabelVar.set('')
+                    self.chaBonusLabelVar.set('')
                 elif self.raceDropMenuVar.get() == 'Half-Elf':
-                    print('Half-Elf')
+                    self.strBonusLabelVar.set('')
+                    self.dexBonusLabelVar.set('')
+                    self.conBonusLabelVar.set('')
+                    self.intBonusLabelVar.set('')
+                    self.wisBonusLabelVar.set('')
+                    self.chaBonusLabelVar.set('')
                 elif self.raceDropMenuVar.get() == 'Half-Orc':
-                    print('Half-Orc')
+                    self.strBonusLabelVar.set('+2')
+                    self.dexBonusLabelVar.set('')
+                    self.conBonusLabelVar.set('')
+                    self.intBonusLabelVar.set('-2')
+                    self.wisBonusLabelVar.set('')
+                    self.chaBonusLabelVar.set('-2')
                 else:
-                    print('Halfling')
+                    self.strBonusLabelVar.set('-2')
+                    self.dexBonusLabelVar.set('+2')
+                    self.conBonusLabelVar.set('')
+                    self.intBonusLabelVar.set('')
+                    self.wisBonusLabelVar.set('')
+                    self.chaBonusLabelVar.set('')
         except:
             print('Error reading virtual event!')
 
