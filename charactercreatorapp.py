@@ -1,6 +1,6 @@
 __author__ = 'cbartel'
 
-from random import randint
+from random import randint, choice
 from tkinter import *
 from tkinter import ttk
 
@@ -141,7 +141,8 @@ class Application(Frame):
                                    text="Create",
                                    command=self.rollAbilities)
         self.saveButton = Button(self.buttonFrame,
-                                 text="Save")
+                                 text="Save",
+                                 command=self.saveCharacter)
         self.quitButton = Button(self.buttonFrame,
                                  text="Quit",
                                  command=root.destroy)
@@ -362,7 +363,36 @@ class Application(Frame):
 
     # TODO: function to export character to .txt file
     def saveCharacter(self):
-        print('Saved!')
+        f = open(self.raceDropMenuVar.get() + ' ' +
+                 self.classDropMenuVar.get() + ' ' +
+                 self.fileKey() + '.txt', 'w')
+        f.write(self.raceDropMenuVar.get() + '\n' +
+                self.classDropMenuVar.get() + '\n' +
+                'Str' + ' ' + str(self.strEntryVar.get()) + ' ' +
+                str(self.strBonusLabelVar.get()) +
+                '\n' +
+                'Dex' + ' ' + str(self.dexEntryVar.get()) + ' ' +
+                str(self.dexBonusLabelVar.get()) +
+                '\n' +
+                'Con' + ' ' + str(self.conEntryVar.get()) + ' ' +
+                str(self.conBonusLabelVar.get()) +
+                '\n' +
+                'Int' + ' ' + str(self.intEntryVar.get()) + ' ' +
+                str(self.intBonusLabelVar.get()) +
+                '\n' +
+                'Wis' + ' ' + str(self.wisEntryVar.get()) + ' ' +
+                str(self.wisBonusLabelVar.get()) +
+                '\n' +
+                'Cha' + ' ' + str(self.chaEntryVar.get()) + ' ' +
+                str(self.chaBonusLabelVar.get())
+                )
+        f.close()
+
+    # TODO: generate random 16 char file key
+    def fileKey(self):
+        keyString = ''
+        return keyString.join(choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+                              for i in range(8))
 
 if __name__ == '__main__':
     root = Tk()
