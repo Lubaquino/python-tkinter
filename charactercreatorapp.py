@@ -1,5 +1,3 @@
-__author__ = 'cbartel'
-
 from random import randint, choice
 from tkinter import *
 from tkinter import ttk
