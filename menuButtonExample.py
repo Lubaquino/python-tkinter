@@ -1,8 +1,9 @@
 __author__ = 'cbartel'
 
 from tkinter import *
-from tkinter import ttk
+from tkinter import messagebox
 from random import randint
+import sys
 
 class Application(Frame):
 
@@ -59,10 +60,23 @@ class Application(Frame):
         # TODO: create menubutton for File, Help, About
         self.menubar = Menu(root)
 
-        self.menubar.add_command(label="Hello!",
+        self.filemenu = Menu(self.menubar,
+                             tearoff=0)
+        self.filemenu.add_command(label="Open",
                                  command=self.helloGoodbye)
-        self.menubar.add_command(label="Quit",
+        self.filemenu.add_command(label="Save",
+                                 command=self.helloGoodbye)
+        self.filemenu.add_separator()
+        self.filemenu.add_command(label="Quit",
                                  command=root.quit)
+
+        self.menubar.add_cascade(label="File",
+                                 menu=self.filemenu)
+
+        self.menubar.add_command(label="About",
+                                 command=self.about)
+        self.menubar.add_command(label="Help",
+                                 command=self.help)
 
         root.config(menu=self.menubar)
 
@@ -89,6 +103,8 @@ class Application(Frame):
                      column=0,
                      sticky=W+E)
 
+
+    # TODO: create example functions
     def sayHello(self):
         return 'Hello!'
 
@@ -101,6 +117,22 @@ class Application(Frame):
             self.t.insert(INSERT, '\n'+self.sayHello())
         else:
             self.t.insert(INSERT, '\n'+self.sayGoodBye())
+
+    # TODO: create 2 messageboxes for about/help
+    def about(self):
+        messagebox.showinfo("About",
+                            "Written by: Chad Bartel\n" +
+                            "Using Python ver " + sys.version)
+
+    def help(self):
+        messagebox.showinfo("Help",
+                            "Clicking the 'About' menu shows you info about\n" +
+                            "the program and who wrote it.\n\n" +
+                            "The radio buttons are decorative only.\n" +
+                            "The 'Button' button randomly chooses between\n" +
+                            "saying 'Hello!' or 'Goodbye.' in the text field.\n\n" +
+                            "The options 'Open' and 'Save' use the same command\n" +
+                            "as 'Button'. Except 'Quit' will terminate the window.\n")
 
 if __name__ == '__main__':
     root = Tk()
