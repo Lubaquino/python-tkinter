@@ -11,6 +11,8 @@ class Application(Frame):
         Frame.__init__(self, master)
         self.pack()
         self.createWidgets()
+        self.classSelect('<<ComboboxSelected>>')
+        self.raceSelect('<<ComboboxSelected>>')
 
     # create widgets in separate function
     def createWidgets(self):
@@ -26,12 +28,12 @@ class Application(Frame):
                                text="Race")
         self.classLabel = Label(self.raceClassFrame,
                                 text="Class")
-        self.roll1Label = Label(self.radioDiceFrame,
-                                text="3 of 4d6 x 6, reroll lowest")
-        self.roll2Label = Label(self.radioDiceFrame,
-                                text="3 of 4d6 x 6")
-        self.roll3Label = Label(self.radioDiceFrame,
-                                text="3d6 x 6")
+        # self.roll1Label = Label(self.radioDiceFrame,
+        #                         text="3 of 4d6 x 6, reroll lowest")
+        # self.roll2Label = Label(self.radioDiceFrame,
+        #                         text="3 of 4d6 x 6")
+        # self.roll3Label = Label(self.radioDiceFrame,
+        #                         text="3d6 x 6")
         self.abilitiesLabel = Label(self.statsFrame,
                                 text="Abilities")
         self.raceBonusLabel = Label(self.statsFrame,
@@ -151,13 +153,23 @@ class Application(Frame):
         self.rollMasterVar = IntVar()
         self.roll1Radio = Radiobutton(self.radioDiceFrame,
                                       variable=self.rollMasterVar,
-                                      value=1)
+                                      anchor=W,
+                                      value=1,
+                                      text='3 of 4d6 x 6, reroll lowest',
+                                      justify=LEFT)
         self.roll2Radio = Radiobutton(self.radioDiceFrame,
                                       variable=self.rollMasterVar,
-                                      value=2)
+                                      anchor=W,
+                                      value=2,
+                                      text='3 of 4d6 x 6',
+                                      justify=LEFT)
         self.roll3Radio = Radiobutton(self.radioDiceFrame,
                                       variable=self.rollMasterVar,
-                                      value=3)
+                                      anchor=W,
+                                      value=3,
+                                      text='3d6 x 6',
+                                      justify=LEFT)
+        self.roll1Radio.select()
 
         # TODO: arrange the frames within the window
         self.raceClassFrame.grid(row=0, column=0)
@@ -167,12 +179,12 @@ class Application(Frame):
         self.classDropMenu.grid(row=1, column=1)
 
         self.radioDiceFrame.grid(row=1, column=0)
-        self.roll1Radio.grid(row=0, column=0)
-        self.roll1Label.grid(row=0, column=1)
-        self.roll2Radio.grid(row=1, column=0)
-        self.roll2Label.grid(row=1, column=1)
-        self.roll3Radio.grid(row=2, column=0)
-        self.roll3Label.grid(row=2, column=1)
+        self.roll1Radio.grid(row=0, column=0, sticky=W+E)
+        #self.roll1Label.grid(row=0, column=1)
+        self.roll2Radio.grid(row=1, column=0, sticky=W+E)
+        #self.roll2Label.grid(row=1, column=1)
+        self.roll3Radio.grid(row=2, column=0, sticky=W+E)
+        #self.roll3Label.grid(row=2, column=1)
 
         self.buttonFrame.grid(row=2, column=0)
         self.createButton.grid(row=0, column=0, sticky=W+E)
@@ -318,8 +330,8 @@ class Application(Frame):
                     self.conLabel["fg"] = "white"
                 elif self.classDropMenuVar.get() == 'Rogue':
                     self.dexLabel["fg"] = "green"
-                    self.intLabel["fg"] = "yellow"
-                    self.wisLabel["fg"] = "yellow"
+                    self.intLabel["fg"] = "green"
+                    self.wisLabel["fg"] = "green"
                     self.chaLabel["fg"] = "white"
                     self.conLabel["fg"] = "white"
                     self.strLabel["fg"] = "white"
