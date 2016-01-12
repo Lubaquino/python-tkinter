@@ -23,17 +23,11 @@ class Application(Frame):
         self.buttonFrame = Frame(self)
         self.statsFrame = Frame(self)
 
-        # TODO: create 19 labels
+        # TODO: create 16 labels
         self.raceLabel = Label(self.raceClassFrame,
                                text="Race")
         self.classLabel = Label(self.raceClassFrame,
                                 text="Class")
-        # self.roll1Label = Label(self.radioDiceFrame,
-        #                         text="3 of 4d6 x 6, reroll lowest")
-        # self.roll2Label = Label(self.radioDiceFrame,
-        #                         text="3 of 4d6 x 6")
-        # self.roll3Label = Label(self.radioDiceFrame,
-        #                         text="3d6 x 6")
         self.abilitiesLabel = Label(self.statsFrame,
                                 text="Abilities")
         self.raceBonusLabel = Label(self.statsFrame,
@@ -180,11 +174,8 @@ class Application(Frame):
 
         self.radioDiceFrame.grid(row=1, column=0)
         self.roll1Radio.grid(row=0, column=0, sticky=W+E)
-        #self.roll1Label.grid(row=0, column=1)
         self.roll2Radio.grid(row=1, column=0, sticky=W+E)
-        #self.roll2Label.grid(row=1, column=1)
         self.roll3Radio.grid(row=2, column=0, sticky=W+E)
-        #self.roll3Label.grid(row=2, column=1)
 
         self.buttonFrame.grid(row=2, column=0)
         self.createButton.grid(row=0, column=0, sticky=W+E)
