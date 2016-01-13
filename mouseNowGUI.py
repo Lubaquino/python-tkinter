@@ -33,11 +33,11 @@ class Application(Frame):
         self.b = Button(self,
                         textvariable=self.bVar,
                         command=self.countThenMouse)
-        self.bVar.set('Click me to get\nyour cursor\'s position!\n')
+        self.bVar.set('Click me to get\nyour cursor\'s position!')
 
         # TODO: arrange each widget in the window
         self.instructLabel.grid(row=0, column=0, sticky=W+E)
-        self.b.grid(row=1, column=0, sticky=W+E)
+        self.b.grid(row=1, column=0)
         self.resultsLabel.grid(row=2, column=0, sticky=W+E)
 
     def countDown(self):
