@@ -1,5 +1,5 @@
 #! python3
-# mouseNow.py - Displays the mouse cursor's current position.
+# mouseNowGUI.py - Displays the mouse cursor's current position.
 
 from pyautogui import position
 from time import sleep
@@ -33,28 +33,28 @@ class Application(Frame):
         self.b = Button(self,
                         textvariable=self.bVar,
                         command=self.countThenMouse)
-        self.bVar.set('Click me to get\nyour cursor\'s position!')
+        self.bVar.set('Click me to get\nyour cursor\'s position!\n')
 
         # TODO: arrange each widget in the window
         self.instructLabel.grid(row=0, column=0, sticky=W+E)
         self.b.grid(row=1, column=0, sticky=W+E)
         self.resultsLabel.grid(row=2, column=0, sticky=W+E)
 
-    def finalCountdown(self):
-        sleepyTime = 5
-        while sleepyTime > 0:
-            self.bVar.set(str(sleepyTime))
+    def countDown(self):
+        count = 5
+        while count > 0:
+            self.bVar.set(str(count))
             sleep(1)
-            sleepyTime -= 1
+            count -= 1
 
     def getMouse(self):
         x, y = position()
         self.resultsLabelVar.set('X: ' + str(x).rjust(4) + ' Y: ' + str(y).rjust(4))
 
     def countThenMouse(self):
-        self.finalCountdown()
+        self.countDown()
         self.bVar.set('Say cheese!')
-        sleep(1)
+        sleep(0.5)
         self.getMouse()
         self.bVar.set('Click me to get\nyour cursor\'s position!')
 
