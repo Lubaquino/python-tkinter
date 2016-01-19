@@ -20,6 +20,7 @@ class Application(Frame):
         self.raceClassFrame = Frame(self)
         self.radioDiceFrame = Frame(self)
         self.statsFrame = Frame(self)
+        self.textFrame = Frame(self)
 
 # create menubutton for File, Help, About
         self.menubar = Menu(root)
@@ -175,6 +176,8 @@ class Application(Frame):
                                       justify=LEFT)
         self.roll1Radio.select()
 
+# TODO: create text field to display class/race information
+
 # arrange the frames within the window
         self.raceClassFrame.grid(row=0, column=0)
         self.raceLabel.grid(row=0, column=0)
@@ -208,6 +211,9 @@ class Application(Frame):
         self.intBonusLabel.grid(row=4, column=2)
         self.wisBonusLabel.grid(row=5, column=2)
         self.chaBonusLabel.grid(row=6, column=2)
+
+        self.infoText.grid(row=2, column=0)
+        self.infoText.grid(row=0, column=0)
 
 # function to determine racial bonus
     def raceSelect(self, event):
