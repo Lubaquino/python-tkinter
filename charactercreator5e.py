@@ -5,7 +5,7 @@ from tkinter import ttk
 
 class Application(Frame):
 
-    # initialize app
+# initialize app
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.pack()
@@ -13,15 +13,15 @@ class Application(Frame):
         self.classSelect('<<ComboboxSelected>>')
         self.raceSelect('<<ComboboxSelected>>')
 
-    # create widgets in separate function
+# create widgets in separate function
     def createWidgets(self):
 
-        # TODO: create 4 frames
+# create 4 frames
         self.raceClassFrame = Frame(self)
         self.radioDiceFrame = Frame(self)
         self.statsFrame = Frame(self)
 
-        # TODO: create menubutton for File, Help, About
+# create menubutton for File, Help, About
         self.menubar = Menu(root)
 
         self.filemenu = Menu(self.menubar,
@@ -41,7 +41,7 @@ class Application(Frame):
                                  command=self.help)
         root.config(menu=self.menubar)
 
-        # TODO: create 16 labels
+# create 16 labels
         self.raceLabel = Label(self.raceClassFrame,
                                text="Race")
         self.classLabel = Label(self.raceClassFrame,
@@ -99,7 +99,7 @@ class Application(Frame):
         self.chaBonusLabel = Label(self.statsFrame,
                                    textvariable=self.chaBonusLabelVar)
 
-        # TODO: create 6 entry fields
+# create 6 entry fields
         self.strEntryVar = IntVar()
         self.strEntry = Entry(self.statsFrame,
                               width=2,
@@ -125,11 +125,11 @@ class Application(Frame):
                               width=2,
                               textvariable=self.chaEntryVar)
 
-        # TODO: store each entry variable in array for calculation purposes
+# store each entry variable in array for calculation purposes
         self.abilityList = [self.strEntryVar, self.dexEntryVar, self.conEntryVar,
                             self.intEntryVar, self.wisEntryVar, self.chaEntryVar]
 
-        # TODO: create 2 drop-downs
+# create 2 drop-downs
         self.raceDropMenuVar = StringVar()
         self.raceDropMenu = ttk.Combobox(self.raceClassFrame,
                                          state="readonly",
@@ -153,7 +153,7 @@ class Application(Frame):
         self.classDropMenu.bind('<<ComboboxSelected>>',
                                 self.classSelect)
 
-        # TODO: create 3 radio buttons
+# create 3 radio buttons
         self.rollMasterVar = IntVar()
         self.roll1Radio = Radiobutton(self.radioDiceFrame,
                                       variable=self.rollMasterVar,
@@ -175,7 +175,7 @@ class Application(Frame):
                                       justify=LEFT)
         self.roll1Radio.select()
 
-        # TODO: arrange the frames within the window
+# arrange the frames within the window
         self.raceClassFrame.grid(row=0, column=0)
         self.raceLabel.grid(row=0, column=0)
         self.classLabel.grid(row=1, column=0)
@@ -209,7 +209,7 @@ class Application(Frame):
         self.wisBonusLabel.grid(row=5, column=2)
         self.chaBonusLabel.grid(row=6, column=2)
 
-    # TODO: function to determine racial bonus
+# function to determine racial bonus
     def raceSelect(self, event):
         try:
             if event:
@@ -314,6 +314,7 @@ class Application(Frame):
         except:
             print('Error reading virtual event!')
 
+# function to determine class primary ability/abilities
     def classSelect(self, event):
         try:
             if event:
@@ -404,7 +405,7 @@ class Application(Frame):
         except:
             print('Error reading virtual event!')
 
-    # TODO: function to roll stats
+# function to roll stats
     def rollAbilities(self):
         v = self.rollMasterVar.get()
         try:
@@ -425,7 +426,7 @@ class Application(Frame):
             print('Error finding RadioButton value!')
 
 
-    # TODO: function to export character to .txt file
+# function to export character to .txt file
     def saveCharacter(self):
         f = open(self.raceDropMenuVar.get() + ' ' +
                  self.classDropMenuVar.get() + ' ' +
@@ -452,13 +453,13 @@ class Application(Frame):
                 )
         f.close()
 
-    # TODO: generate random 16 char file key
+# generate random 16 char file key
     def fileKey(self):
         keyString = ''
         return keyString.join(choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
                               for i in range(8))
 
-    # TODO: create 2 messageboxes for about/help
+# create 2 messageboxes for about/help
     def about(self):
         messagebox.showinfo("About",
                             "Written by: Chad Bartel\n" +
