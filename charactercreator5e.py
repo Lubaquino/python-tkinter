@@ -137,8 +137,8 @@ class Application(Frame):
         self.raceDropMenu = ttk.Combobox(self.raceClassFrame,
                                          state="readonly",
                                          textvariable=self.raceDropMenuVar)
-        self.raceDropMenu["values"] = ('Aasimar', 'Dragonborn', 'Hill Dwarf',
-                                       'Mountain Dwarf', 'High Elf', 'Wood Elf',
+        self.raceDropMenu["values"] = ('Dragonborn', 'Hill Dwarf', 'Mountain Dwarf',
+                                       'High Elf', 'Wood Elf', 'Dark Elf',
                                        'Forest Gnome', 'Rock Gnome', 'Half-Elf',
                                        'Half-Orc', 'Lightfoot Halfling', 'Stout Halfling',
                                        'Human', 'Tiefling')
@@ -178,14 +178,14 @@ class Application(Frame):
                                       justify=LEFT)
         self.roll1Radio.select()
 
-# TODO: create text field to display class/race information
+# create text field to display class/race information
         self.infoText = Text(self.textFrame,
                              wrap=WORD,
                              width=40,
                              height=10)
         self.infoText.insert(INSERT, "This is where you'll see information on the class and race.")
 
-# TODO: create scrollbars for text widget and attach
+# create scrollbars for text widget and attach
         self.scrollY = Scrollbar(self.textFrame)
         self.infoText.config(yscrollcommand=self.scrollY.set)
         self.scrollY.config(command=self.infoText.yview)
@@ -228,201 +228,284 @@ class Application(Frame):
         self.infoText.grid(row=0, column=0)
         self.scrollY.grid(row=0, column=1, sticky=N+S)
 
-# function to determine racial bonus
+# function to determine racial bonus and write some info about it
     def raceSelect(self, event):
         try:
             if event:
-                if self.raceDropMenuVar.get() == 'Aasimar':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Dragonborn':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Hill Dwarf':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Mountain Dwarf':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'High Elf':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Wood Elf':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Forest Gnome':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Rock Gnome':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Half-Elf':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Half-Orc':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Lightfoot Halfling':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Stout Halfling':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                elif self.raceDropMenuVar.get() == 'Human':
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
-                else:
-                    self.strBonusLabelVar.set('')
-                    self.dexBonusLabelVar.set('')
-                    self.conBonusLabelVar.set('')
-                    self.intBonusLabelVar.set('')
-                    self.wisBonusLabelVar.set('')
-                    self.chaBonusLabelVar.set('')
+                self.infoText.delete("1.0", END)
+                self.raceBonusSelect()
+                self.raceInfoSelect()
+                self.classAbilitySelect()
+                self.classInfoSelect()
         except:
             print('Error reading virtual event!')
 
-# function to determine class primary ability/abilities
+    def raceBonusSelect(self):
+        if self.raceDropMenuVar.get() == 'Dragonborn':
+            self.strBonusLabelVar.set('+2')
+            self.dexBonusLabelVar.set('')
+            self.conBonusLabelVar.set('')
+            self.intBonusLabelVar.set('')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('+1')
+        elif self.raceDropMenuVar.get() == 'Hill Dwarf':
+            self.strBonusLabelVar.set('')
+            self.dexBonusLabelVar.set('')
+            self.conBonusLabelVar.set('+2')
+            self.intBonusLabelVar.set('')
+            self.wisBonusLabelVar.set('+1')
+            self.chaBonusLabelVar.set('')
+        elif self.raceDropMenuVar.get() == 'Mountain Dwarf':
+            self.strBonusLabelVar.set('+2')
+            self.dexBonusLabelVar.set('')
+            self.conBonusLabelVar.set('+2')
+            self.intBonusLabelVar.set('')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('')
+        elif self.raceDropMenuVar.get() == 'High Elf':
+            self.strBonusLabelVar.set('')
+            self.dexBonusLabelVar.set('+2')
+            self.conBonusLabelVar.set('')
+            self.intBonusLabelVar.set('+1')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('')
+        elif self.raceDropMenuVar.get() == 'Wood Elf':
+            self.strBonusLabelVar.set('')
+            self.dexBonusLabelVar.set('+2')
+            self.conBonusLabelVar.set('')
+            self.intBonusLabelVar.set('')
+            self.wisBonusLabelVar.set('+1')
+            self.chaBonusLabelVar.set('')
+        elif self.raceDropMenuVar.get() == 'Dark Elf':
+            self.strBonusLabelVar.set('')
+            self.dexBonusLabelVar.set('+2')
+            self.conBonusLabelVar.set('')
+            self.intBonusLabelVar.set('')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('+1')
+        elif self.raceDropMenuVar.get() == 'Forest Gnome':
+            self.strBonusLabelVar.set('')
+            self.dexBonusLabelVar.set('+1')
+            self.conBonusLabelVar.set('')
+            self.intBonusLabelVar.set('+2')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('')
+        elif self.raceDropMenuVar.get() == 'Rock Gnome':
+            self.strBonusLabelVar.set('')
+            self.dexBonusLabelVar.set('')
+            self.conBonusLabelVar.set('+1')
+            self.intBonusLabelVar.set('+2')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('')
+        elif self.raceDropMenuVar.get() == 'Half-Elf':
+            self.strBonusLabelVar.set('')
+            self.dexBonusLabelVar.set('')
+            self.conBonusLabelVar.set('')
+            self.intBonusLabelVar.set('')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('+2')
+        elif self.raceDropMenuVar.get() == 'Half-Orc':
+            self.strBonusLabelVar.set('+2')
+            self.dexBonusLabelVar.set('')
+            self.conBonusLabelVar.set('+1')
+            self.intBonusLabelVar.set('')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('')
+        elif self.raceDropMenuVar.get() == 'Lightfoot Halfling':
+            self.strBonusLabelVar.set('')
+            self.dexBonusLabelVar.set('+2')
+            self.conBonusLabelVar.set('')
+            self.intBonusLabelVar.set('')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('+1')
+        elif self.raceDropMenuVar.get() == 'Stout Halfling':
+            self.strBonusLabelVar.set('')
+            self.dexBonusLabelVar.set('+2')
+            self.conBonusLabelVar.set('+1')
+            self.intBonusLabelVar.set('')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('')
+        elif self.raceDropMenuVar.get() == 'Human':
+            self.strBonusLabelVar.set('+1')
+            self.dexBonusLabelVar.set('+1')
+            self.conBonusLabelVar.set('+1')
+            self.intBonusLabelVar.set('+1')
+            self.wisBonusLabelVar.set('+1')
+            self.chaBonusLabelVar.set('+1')
+        else:
+            self.strBonusLabelVar.set('')
+            self.dexBonusLabelVar.set('')
+            self.conBonusLabelVar.set('')
+            self.intBonusLabelVar.set('+1')
+            self.wisBonusLabelVar.set('')
+            self.chaBonusLabelVar.set('+2')
+
+    def raceInfoSelect(self):
+        if self.raceDropMenuVar.get() == 'Dragonborn':
+            self.infoText.insert(INSERT, '')
+        elif self.raceDropMenuVar.get() == 'Hill Dwarf':
+            self.infoText.insert(INSERT, 'As a hill dwarf, you have keen senses, deep intuition, '
+                                         'and remarkable resilience. The gold dwarves of Faerun '
+                                         'in their mighty southern kingdom are hill dwarves, as '
+                                         'are the exiled Neidar and the debased Klar of Krynn '
+                                         'in the Dragonlance setting.\n'
+                                         'Your hit point maximum increases by 1, and it increases '
+                                         'by 1 every time you gain a level.\n')
+        elif self.raceDropMenuVar.get() == 'Mountain Dwarf':
+            self.infoText.insert(INSERT, 'As a mountain dwarf, you\'re strong and hardy, '
+                                         'accustomed to a difficult life in rugged terrain. '
+                                         'You\'re probably on the tall side (for a dwarf), and '
+                                         'tend toward lighter coloration. The shield dwarves of '
+                                         'northern Faerun, as well as the ruling Hylar clan and '
+                                         'and the noble Daewar clan of Dragonlance, are mountain '
+                                         'dwarves.\n'
+                                         '')
+        elif self.raceDropMenuVar.get() == 'High Elf':
+            self.infoText.insert(INSERT, '')
+        elif self.raceDropMenuVar.get() == 'Wood Elf':
+            self.infoText.insert(INSERT, '')
+        elif self.raceDropMenuVar.get() == 'Dark Elf':
+            self.infoText.insert(INSERT, '')
+        elif self.raceDropMenuVar.get() == 'Forest Gnome':
+            self.infoText.insert(INSERT, '')
+        elif self.raceDropMenuVar.get() == 'Rock Gnome':
+            self.infoText.insert(INSERT, '')
+        elif self.raceDropMenuVar.get() == 'Half-Elf':
+            self.infoText.insert(INSERT, '')
+        elif self.raceDropMenuVar.get() == 'Half-Orc':
+            self.infoText.insert(INSERT, '')
+        elif self.raceDropMenuVar.get() == 'Lightfoot Halfling':
+            self.infoText.insert(INSERT, '')
+        elif self.raceDropMenuVar.get() == 'Stout Halfling':
+            self.infoText.insert(INSERT, '')
+        elif self.raceDropMenuVar.get() == 'Human':
+            self.infoText.insert(INSERT, '')
+        else:
+            self.infoText.insert(INSERT, '')
+
+# function to determine class primary ability/abilities and provide info on the class
     def classSelect(self, event):
         try:
             if event:
-                if self.classDropMenuVar.get() == 'Barbarian':
-                    self.strLabel["fg"] = "green"
-                    self.conLabel["fg"] = "white"
-                    self.dexLabel["fg"] = "white"
-                    self.wisLabel["fg"] = "white"
-                    self.chaLabel["fg"] = "white"
-                    self.intLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Bard':
-                    self.chaLabel["fg"] = "green"
-                    self.dexLabel["fg"] = "white"
-                    self.intLabel["fg"] = "white"
-                    self.wisLabel["fg"] = "white"
-                    self.conLabel["fg"] = "white"
-                    self.strLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Cleric':
-                    self.wisLabel["fg"] = "green"
-                    self.conLabel["fg"] = "white"
-                    self.chaLabel["fg"] = "white"
-                    self.intLabel["fg"] = "white"
-                    self.dexLabel["fg"] = "white"
-                    self.strLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Druid':
-                    self.wisLabel["fg"] = "green"
-                    self.dexLabel["fg"] = "white"
-                    self.strLabel["fg"] = "white"
-                    self.chaLabel["fg"] = "white"
-                    self.intLabel["fg"] = "white"
-                    self.conLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Fighter':
-                    self.strLabel["fg"] = "green"
-                    self.dexLabel["fg"] = "green"
-                    self.conLabel["fg"] = "white"
-                    self.wisLabel["fg"] = "white"
-                    self.chaLabel["fg"] = "white"
-                    self.intLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Monk':
-                    self.dexLabel["fg"] = "green"
-                    self.wisLabel["fg"] = "white"
-                    self.strLabel["fg"] = "white"
-                    self.chaLabel["fg"] = "white"
-                    self.intLabel["fg"] = "white"
-                    self.conLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Paladin':
-                    self.chaLabel["fg"] = "green"
-                    self.strLabel["fg"] = "green"
-                    self.wisLabel["fg"] = "white"
-                    self.intLabel["fg"] = "white"
-                    self.dexLabel["fg"] = "white"
-                    self.conLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Ranger':
-                    self.dexLabel["fg"] = "green"
-                    self.strLabel["fg"] = "white"
-                    self.wisLabel["fg"] = "white"
-                    self.chaLabel["fg"] = "white"
-                    self.intLabel["fg"] = "white"
-                    self.conLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Rogue':
-                    self.dexLabel["fg"] = "green"
-                    self.intLabel["fg"] = "white"
-                    self.wisLabel["fg"] = "white"
-                    self.chaLabel["fg"] = "white"
-                    self.conLabel["fg"] = "white"
-                    self.strLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Sorcerer':
-                    self.chaLabel["fg"] = "green"
-                    self.dexLabel["fg"] = "white"
-                    self.conLabel["fg"] = "white"
-                    self.wisLabel["fg"] = "white"
-                    self.intLabel["fg"] = "white"
-                    self.strLabel["fg"] = "white"
-                elif self.classDropMenuVar.get() == 'Warlock':
-                    self.chaLabel["fg"] = "green"
-                    self.dexLabel["fg"] = "white"
-                    self.conLabel["fg"] = "white"
-                    self.wisLabel["fg"] = "white"
-                    self.intLabel["fg"] = "white"
-                    self.strLabel["fg"] = "white"
-                else:
-                    self.intLabel["fg"] = "green"
-                    self.dexLabel["fg"] = "white"
-                    self.conLabel["fg"] = "white"
-                    self.wisLabel["fg"] = "white"
-                    self.chaLabel["fg"] = "white"
-                    self.strLabel["fg"] = "white"
+                self.infoText.delete("1.0", END)
+                self.raceBonusSelect()
+                self.raceInfoSelect()
+                self.classAbilitySelect()
+                self.classInfoSelect()
         except:
             print('Error reading virtual event!')
+
+    def classAbilitySelect(self):
+        if self.classDropMenuVar.get() == 'Barbarian':
+            self.strLabel["fg"] = "green"
+            self.conLabel["fg"] = "white"
+            self.dexLabel["fg"] = "white"
+            self.wisLabel["fg"] = "white"
+            self.chaLabel["fg"] = "white"
+            self.intLabel["fg"] = "white"
+        elif self.classDropMenuVar.get() == 'Bard':
+            self.chaLabel["fg"] = "green"
+            self.dexLabel["fg"] = "white"
+            self.intLabel["fg"] = "white"
+            self.wisLabel["fg"] = "white"
+            self.conLabel["fg"] = "white"
+            self.strLabel["fg"] = "white"
+        elif self.classDropMenuVar.get() == 'Cleric':
+            self.wisLabel["fg"] = "green"
+            self.conLabel["fg"] = "white"
+            self.chaLabel["fg"] = "white"
+            self.intLabel["fg"] = "white"
+            self.dexLabel["fg"] = "white"
+            self.strLabel["fg"] = "white"
+        elif self.classDropMenuVar.get() == 'Druid':
+            self.wisLabel["fg"] = "green"
+            self.dexLabel["fg"] = "white"
+            self.strLabel["fg"] = "white"
+            self.chaLabel["fg"] = "white"
+            self.intLabel["fg"] = "white"
+            self.conLabel["fg"] = "white"
+        elif self.classDropMenuVar.get() == 'Fighter':
+            self.strLabel["fg"] = "green"
+            self.dexLabel["fg"] = "green"
+            self.conLabel["fg"] = "white"
+            self.wisLabel["fg"] = "white"
+            self.chaLabel["fg"] = "white"
+            self.intLabel["fg"] = "white"
+        elif self.classDropMenuVar.get() == 'Monk':
+            self.dexLabel["fg"] = "green"
+            self.wisLabel["fg"] = "green"
+            self.strLabel["fg"] = "white"
+            self.chaLabel["fg"] = "white"
+            self.intLabel["fg"] = "white"
+            self.conLabel["fg"] = "white"
+        elif self.classDropMenuVar.get() == 'Paladin':
+            self.chaLabel["fg"] = "green"
+            self.strLabel["fg"] = "green"
+            self.wisLabel["fg"] = "white"
+            self.intLabel["fg"] = "white"
+            self.dexLabel["fg"] = "white"
+            self.conLabel["fg"] = "white"
+        elif self.classDropMenuVar.get() == 'Ranger':
+            self.dexLabel["fg"] = "green"
+            self.wisLabel["fg"] = "green"
+            self.strLabel["fg"] = "white"
+            self.chaLabel["fg"] = "white"
+            self.intLabel["fg"] = "white"
+            self.conLabel["fg"] = "white"
+        elif self.classDropMenuVar.get() == 'Rogue':
+            self.dexLabel["fg"] = "green"
+            self.intLabel["fg"] = "white"
+            self.wisLabel["fg"] = "white"
+            self.chaLabel["fg"] = "white"
+            self.conLabel["fg"] = "white"
+            self.strLabel["fg"] = "white"
+        elif self.classDropMenuVar.get() == 'Sorcerer':
+            self.chaLabel["fg"] = "green"
+            self.dexLabel["fg"] = "white"
+            self.conLabel["fg"] = "white"
+            self.wisLabel["fg"] = "white"
+            self.intLabel["fg"] = "white"
+            self.strLabel["fg"] = "white"
+        elif self.classDropMenuVar.get() == 'Warlock':
+            self.chaLabel["fg"] = "green"
+            self.dexLabel["fg"] = "white"
+            self.conLabel["fg"] = "white"
+            self.wisLabel["fg"] = "white"
+            self.intLabel["fg"] = "white"
+            self.strLabel["fg"] = "white"
+        else:
+            self.intLabel["fg"] = "green"
+            self.dexLabel["fg"] = "white"
+            self.conLabel["fg"] = "white"
+            self.wisLabel["fg"] = "white"
+            self.chaLabel["fg"] = "white"
+            self.strLabel["fg"] = "white"
+
+    def classInfoSelect(self):
+        if self.classDropMenuVar.get() == 'Barbarian':
+            self.infoText.insert(CURRENT, '')
+        elif self.classDropMenuVar.get() == 'Bard':
+            self.infoText.insert(CURRENT, '')
+        elif self.classDropMenuVar.get() == 'Cleric':
+            self.infoText.insert(CURRENT, '')
+        elif self.classDropMenuVar.get() == 'Druid':
+            self.infoText.insert(CURRENT, '')
+        elif self.classDropMenuVar.get() == 'Fighter':
+            self.infoText.insert(CURRENT, '')
+        elif self.classDropMenuVar.get() == 'Monk':
+            self.infoText.insert(CURRENT, '')
+        elif self.classDropMenuVar.get() == 'Paladin':
+            self.infoText.insert(CURRENT, '')
+        elif self.classDropMenuVar.get() == 'Ranger':
+            self.infoText.insert(CURRENT, '')
+        elif self.classDropMenuVar.get() == 'Rogue':
+            self.infoText.insert(CURRENT, '')
+        elif self.classDropMenuVar.get() == 'Sorcerer':
+            self.infoText.insert(CURRENT, '')
+        elif self.classDropMenuVar.get() == 'Warlock':
+            self.infoText.insert(CURRENT, '')
+        else:
+            self.infoText.insert(INSERT, '')
 
 # function to roll stats
     def rollAbilities(self):
