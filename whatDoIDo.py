@@ -17,7 +17,7 @@ class Application(Frame):
         # Create frame for widgets
         self.whatDoFrame = Frame(self)
 
-        # Create 'File' and 'Quit' on menubar
+        # TODO: Create 'File' and 'Quit' on menubar
         self.menubar = Menu(root)
         self.filemenu = Menu(self.menubar,
                              tearoff=0)
@@ -28,7 +28,7 @@ class Application(Frame):
                                   command=root.quit)
         root.config(menu=self.menubar)
 
-        # TODO: Create label for "flavor" above dynmic label
+        # TODO: Create label for "flavor" above dynamic label
         self.flavorLabel = Label(self.whatDoFrame,
                                  text="What about...")
 
