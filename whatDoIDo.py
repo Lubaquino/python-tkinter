@@ -14,8 +14,19 @@ class Application(Frame):
     # TODO: Build method to house all app widgets
     def createWidgets(self):
 
-        # TODO: Create frame for widgets
+        # Create frame for widgets
         self.whatDoFrame = Frame(self)
+
+        # Create 'File' and 'Quit' on menubar
+        self.menubar = Menu(root)
+        self.filemenu = Menu(self.menubar,
+                             tearoff=0)
+        self.filemenu.add_command(label="Open",
+                                  command=self.openFile)
+        self.filemenu.add_separator()
+        self.filemenu.add_command(label="Quit",
+                                  command=root.quit)
+        root.config(menu=self.menubar)
 
         # TODO: Create label for "flavor" above dynmic label
         self.flavorLabel = Label(self.whatDoFrame,
@@ -29,13 +40,23 @@ class Application(Frame):
                                  textvariable=self.resultText)
 
         # TODO: Create button to generate result
+        self.resultButton = Button(self.whatDoFrame,
+                                   text="I'm Bored!",
+                                   command=self.chooseResult)
 
-
-    # TODO: Create file bar to load a text file to use as results list and quit
-
+        # TODO: Arrange widgets in frame
+        self.whatDoFrame.grid(row=0, column=0)
+        self.flavorLabel.grid(row=0, column=0, sticky=W+E)
+        self.resultLabel.grid(row=1, column=0, sticky=W+E)
+        self.resultButton.grid(row=2, column=0)
 
     # TODO: Load text file for result choices and close text file
+    def openFile(self):
+        pass
 
+    # TODO: Build method to choose a result from the text file
+    def chooseResult(self):
+        pass
 
 # Run app
 if __name__ == '__main__':
