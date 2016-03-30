@@ -1,5 +1,6 @@
 from random import randint, choice
 from tkinter import *
+from tkinter import messagebox
 from tkinter import ttk
 from tkinter import filedialog
 
@@ -32,6 +33,8 @@ class Application(Frame):
                                   command=root.quit)
         self.menubar.add_cascade(label="File",
                                  menu=self.filemenu)
+        self.menubar.add_command(label="Help",
+                                 command=self.help)
         root.config(menu=self.menubar)
 
         # TODO: Create label for "flavor" above dynamic label
@@ -43,7 +46,7 @@ class Application(Frame):
         self.resultLabel = Label(self.whatDoFrame,
                                  relief="sunken",
                                  justify=CENTER,
-                                 width=15,
+                                 width=20,
                                  textvariable=self.resultText)
 
         # TODO: Create button to generate result
@@ -70,19 +73,43 @@ class Application(Frame):
 
         self.textFrame.grid(row=0, column=1)
         self.textBox.grid(row=0, column=0)
-        self.scrollY.grid(row=0,column=1, sticky=N+S)
+        self.scrollY.grid(row=0, column=1, sticky=N+S)
 
     # TODO: Load text file for result choices and close text file
     def loadFile(self):
-        pass
+        self.loadPath = filedialog.askopenfilename()
+        self.textBox.delete(1.0, END)
+        self.loadTxt = open(self.loadPath, 'r')
+        self.textBox.insert(1.0, str(self.loadTxt.read()))
+        self.loadTxt.close()
+        return self.loadPath
 
-    # TODO: Save text file for results choices and close text file
+    # TODO: Save text widget contents for results choices
     def saveFile(self):
-        pass
+        self.savePath = filedialog.asksaveasfilename()
+        self.saveTxt = open(self.savePath + ".txt", 'w')
+        self.saveTxt.write(str(self.textBox.get(1.0, END)))
+        self.saveTxt.close()
+        return self.savePath
 
     # TODO: Build method to choose a result from the text file
     def chooseResult(self):
-        pass
+        if str(self.textBox.get(1.0, END)) == "":
+            messagebox.showinfo("Please load a text file from the file menu or "
+                                "start making a list of stuff to do in the "
+                                "blank space on the right!")
+        else:
+            pass
+
+    # TODO: Create pop-up for "Help" menubutton
+    def help(self):
+        messagebox.showinfo("Help",
+                            "'Save' - Click this if you would like to save the "
+                            "contents contained in the text widget on the right side "
+                            "of the program as a text file.\n\n"
+                            "'Load' - Click this if you would like to load a text "
+                            "file with items separated by newlines.\n\n"
+                            "'Quit' - Click this to quit the program!")
 
 # Run app
 if __name__ == '__main__':
