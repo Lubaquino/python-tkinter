@@ -11,14 +11,14 @@ class Application(Frame):
         self.pack()
         self.createWidgets()
 
-    # TODO: Build method to house all app widgets
+    # Build method to house all app widgets
     def createWidgets(self):
 
         # Create frames for widgets
         self.whatDoFrame = Frame(self)
         self.textFrame = Frame(self)
 
-        # TODO: Create 'File' and 'Quit' on menubar
+        # Create 'File' and 'Quit' on menubar
         self.menubar = Menu(root)
 
         self.filemenu = Menu(self.menubar,
@@ -36,11 +36,11 @@ class Application(Frame):
                                  command=self.help)
         root.config(menu=self.menubar)
 
-        # TODO: Create label for "flavor" above dynamic label
+        # Create label for "flavor" above dynamic label
         self.flavorLabel = Label(self.whatDoFrame,
                                  text="What about...")
 
-        # TODO: Create dynamic label widget to display result
+        # Create dynamic label widget to display result
         self.resultText = StringVar()
         self.resultLabel = Label(self.whatDoFrame,
                                  relief="sunken",
@@ -48,23 +48,23 @@ class Application(Frame):
                                  width=25,
                                  textvariable=self.resultText)
 
-        # TODO: Create button to generate result
+        # Create button to generate result
         self.resultButton = Button(self.whatDoFrame,
                                    text="I'm Bored!",
                                    command=self.chooseResult)
 
-        # TODO: Create text widget for displaying/creating text files
+        # Create text widget for displaying/creating text files
         self.textBox = Text(self.textFrame,
                             wrap=WORD,
                             width=15,
                             height=10)
 
-        # TODO: Create Y-scrollbar for text widget
+        # Create Y-scrollbar for text widget
         self.scrollY = Scrollbar(self.textFrame)
         self.textBox.config(yscrollcommand=self.scrollY.set)
         self.scrollY.config(command=self.textBox.yview)
 
-        # TODO: Arrange widgets in frame
+        # Arrange widgets in frame
         self.whatDoFrame.grid(row=0, column=0)
         self.flavorLabel.grid(row=0, column=0, sticky=W+E)
         self.resultLabel.grid(row=1, column=0, sticky=W+E)
@@ -74,7 +74,7 @@ class Application(Frame):
         self.textBox.grid(row=0, column=0)
         self.scrollY.grid(row=0, column=1, sticky=N+S)
 
-    # TODO: Load text file for result choices and close text file
+    # Load text file for result choices and close text file
     def loadFile(self):
         self.loadPath = filedialog.askopenfilename()
         self.textBox.delete(1.0, END)
@@ -83,7 +83,7 @@ class Application(Frame):
         self.loadTxt.close()
         return self.loadPath
 
-    # TODO: Save text widget contents for results choices
+    # Save text widget contents for results choices
     def saveFile(self):
         self.savePath = filedialog.asksaveasfilename()
         self.saveTxt = open(self.savePath + ".txt", 'w')
@@ -91,7 +91,7 @@ class Application(Frame):
         self.saveTxt.close()
         return self.savePath
 
-    # TODO: Build method to choose a result from the text file
+    # Build method to choose a result from the text file
     def chooseResult(self):
         # Check to see if a list has been loaded
         if str(self.textBox.get(1.0, END)) == "\n":
@@ -103,7 +103,7 @@ class Application(Frame):
             self.buildList()
             self.resultText.set(choice(self.resultList))
 
-    # TODO: Take each line in text widget and store it in a list
+    # Take each line in text widget and store it in a list
     def buildList(self):
         # Split the string in text box by a newline and save it
         self.resultList = str(self.textBox.get(1.0, END)).split('\n')
@@ -113,7 +113,7 @@ class Application(Frame):
                 self.resultList.remove(r)
         return self.resultList
 
-    # TODO: Create pop-up for "Help" menubutton
+    # Create pop-up for "Help" menubutton
     def help(self):
         messagebox.showinfo("Help",
                             "'Save' - Click this if you would like to save the "
