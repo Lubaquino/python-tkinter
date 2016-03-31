@@ -1,7 +1,6 @@
 from random import randint, choice
 from tkinter import *
 from tkinter import messagebox
-from tkinter import ttk
 from tkinter import filedialog
 
 class Application(Frame):
@@ -80,7 +79,7 @@ class Application(Frame):
         self.loadPath = filedialog.askopenfilename()
         self.textBox.delete(1.0, END)
         self.loadTxt = open(self.loadPath, 'r')
-        self.textBox.insert(1.0, str(self.loadTxt.read()))
+        self.textBox.insert(1.0, str(self.loadTxt.read()).strip())
         self.loadTxt.close()
         return self.loadPath
 
@@ -88,12 +87,13 @@ class Application(Frame):
     def saveFile(self):
         self.savePath = filedialog.asksaveasfilename()
         self.saveTxt = open(self.savePath + ".txt", 'w')
-        self.saveTxt.write(str(self.textBox.get(1.0, END)))
+        self.saveTxt.write(str(self.textBox.get(1.0, END)).strip())
         self.saveTxt.close()
         return self.savePath
 
     # TODO: Build method to choose a result from the text file
     def chooseResult(self):
+        # Check to see if a list has been loaded
         if str(self.textBox.get(1.0, END)) == "\n":
             messagebox.showinfo("Whoops!",
                                 "Please load a text file from the file menu or "
@@ -101,7 +101,7 @@ class Application(Frame):
                                 "blank space on the right!")
         else:
             self.buildList()
-
+            self.resultText.set(choice(self.resultList))
 
     # TODO: Take each line in text widget and store it in a list
     def buildList(self):
@@ -109,7 +109,7 @@ class Application(Frame):
         self.resultList = str(self.textBox.get(1.0, END)).split('\n')
         # Remove any newlines/whitespace from list
         for r in self.resultList:
-            if r == "":
+            if r == "" or r == "\n":
                 self.resultList.remove(r)
         return self.resultList
 
