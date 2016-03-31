@@ -46,7 +46,7 @@ class Application(Frame):
         self.resultLabel = Label(self.whatDoFrame,
                                  relief="sunken",
                                  justify=CENTER,
-                                 width=20,
+                                 width=25,
                                  textvariable=self.resultText)
 
         # TODO: Create button to generate result
@@ -94,12 +94,24 @@ class Application(Frame):
 
     # TODO: Build method to choose a result from the text file
     def chooseResult(self):
-        if str(self.textBox.get(1.0, END)) == "":
-            messagebox.showinfo("Please load a text file from the file menu or "
+        if str(self.textBox.get(1.0, END)) == "\n":
+            messagebox.showinfo("Whoops!",
+                                "Please load a text file from the file menu or "
                                 "start making a list of stuff to do in the "
                                 "blank space on the right!")
         else:
-            pass
+            self.buildList()
+
+
+    # TODO: Take each line in text widget and store it in a list
+    def buildList(self):
+        # Split the string in text box by a newline and save it
+        self.resultList = str(self.textBox.get(1.0, END)).split('\n')
+        # Remove any newlines/whitespace from list
+        for r in self.resultList:
+            if r == "":
+                self.resultList.remove(r)
+        return self.resultList
 
     # TODO: Create pop-up for "Help" menubutton
     def help(self):
