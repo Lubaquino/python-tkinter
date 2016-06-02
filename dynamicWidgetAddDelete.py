@@ -29,8 +29,6 @@ class Application(Frame):
         # create the widgets
         self.masterFrame = Frame(self)
         self.masterFrame.pack()
-        self.newReportFrame = Frame(self.masterFrame)
-        self.newReportFrame.pack()
 
         # on button press, add a new report line
         self.addReportButton = Button(self.masterFrame,
@@ -45,11 +43,12 @@ class Application(Frame):
         self.label1 = Label(self.newReportFrame,
                             text="Report file name: ")
         self.label1.grid(row=0, column=0)
-        self.entry1 = Entry(self.newReportFrame,
-                            text="Type filename and extension here")
+        self.entry1 = Entry(self.newReportFrame)
+        self.entry1.delete(0, END)
+        self.entry1.insert(0, "Type filename and extension here")
         self.entry1.grid(row=0, column=1)
         self.dButton = Button(self.newReportFrame,
-                              text="Click to delete a line")
+                              text="Click to delete this line")
         self.dButton.config(command=self.newReportFrame.destroy)
         self.dButton.grid(row=0, column=2)
 
