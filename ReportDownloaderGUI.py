@@ -26,9 +26,14 @@ class Application(Frame):
 
         # on button press, add a new report line
         self.addReportButton = Button(root, text="Add Report", command=self.addReportLine)
+        self.addReportButton.pack()
 
-    def addReportLine(self, list):
+    def addReportLine(self):
         # add new line to window to search and dl another file
+        self.label1 = Label(root, text="Report file name: ")
+        self.label1.pack()
+        self.entry1 = Entry(root, "Type filename and extension here")
+        self.entry1.pack()
 
     def deleteReportLine(self, list):
         # delete last line added from report list
