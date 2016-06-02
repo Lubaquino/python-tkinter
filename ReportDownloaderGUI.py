@@ -38,3 +38,9 @@ class Application(Frame):
 
     def loadProfile(self):
         # load all settings, filenames, file paths, etc from a text file
+
+if __name__ == '__main__':
+    root = Tk()
+    app = Application(master=root)
+    app.master.title("Download attachments from Email")
+    root.mainloop()
