@@ -23,9 +23,15 @@ class Application(Frame):
 
     def createWidgets(self):
         # create the widgets
-    
-    def addReportLine(self):
+
+        # on button press, add a new report line
+        self.addReportButton = Button(root, text="Add Report", command=self.addReportLine)
+
+    def addReportLine(self, list):
         # add new line to window to search and dl another file
+
+    def deleteReportLine(self, list):
+        # delete last line added from report list
 
     def findAndSaveAttachment(self, k, v):
         # find and save email attachment using key-value pair
