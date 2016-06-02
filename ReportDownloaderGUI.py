@@ -10,6 +10,9 @@ from datetime import date
 FAILSAFE = True
 PAUSE = 2.5
 
+# Something to bear in mind when/if you want to dynamically add/remove widgets
+# http://stackoverflow.com/questions/14804735/tkinter-how-can-i-dynamically-create-a-widget-that-can-then-be-destroyed-or-rem
+
 class Application(Frame):
 
     # initialize app
@@ -20,9 +23,14 @@ class Application(Frame):
 
     def createWidgets(self):
         # create the widgets
+    
+    def addReportLine(self):
+        # add new line to window to search and dl another file
 
     def findAndSaveAttachment(self, k, v):
         # find and save email attachment using key-value pair
+        self.findAttachment(k, v)
+        self.saveAttachment(k, v)
 
     def findAttachment(self, k, v):
         # find the attachment using key-value pair
