@@ -21,22 +21,43 @@ class Application(Frame):
         self.pack()
         self.createWidgets()
 
+    # create the widgets
     def createWidgets(self):
-        # create the widgets
+        # add frames
+        self.masterFrame = Frame(self)
+        # this is a temporary pack, this will be cleaned up later
+        self.masterFrame.pack()
 
         # on button press, add a new report line
-        self.addReportButton = Button(root, text="Add Report", command=self.addReportLine)
+        self.addReportButton = Button(self.masterFrame,
+                                      text="Add Report",
+                                      command=self.addReportLine)
+        # this is a temporary pack, this will be cleaned up later
         self.addReportButton.pack()
 
+    # add new line to window to search and dl another file
     def addReportLine(self):
-        # add new line to window to search and dl another file
-        self.label1 = Label(root, text="Report file name: ")
-        self.label1.pack()
-        self.entry1 = Entry(root, "Type filename and extension here")
-        self.entry1.pack()
+        # create frame to house the newly added widgets
+        self.newReportFrame = Frame(self.masterFrame)
+        self.newReportFrame.pack()
 
-    def deleteReportLine(self, list):
-        # delete last line added from report list
+        # create label to indicate what entry widget is used for
+        self.label1 = Label(self.newReportFrame,
+                            text="Report file name: ")
+        self.label1.grid(row=0, column=0)
+
+        # create entry widget to take user input for filename and extension
+        self.entry1 = Entry(self.newReportFrame)
+        # clear any contents that might be in the entry widget and put placeholder text
+        self.entry1.delete(0, END)
+        self.entry1.insert(0, "Type filename and extension here")
+        self.entry1.grid(row=0, column=1)
+
+        # create button that deletes all widgets in new frame and self
+        self.dButton = Button(self.newReportFrame,
+                              text="Click to delete this line")
+        self.dButton.config(command=self.newReportFrame.destroy)
+        self.dButton.grid(row=0, column=2)
 
     def findAndSaveAttachment(self, k, v):
         # find and save email attachment using key-value pair
