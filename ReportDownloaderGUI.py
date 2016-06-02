@@ -35,6 +35,11 @@ class Application(Frame):
         # this is a temporary pack, this will be cleaned up later
         self.addReportButton.pack()
 
+        # create button to run the search and download on what is in the entry fields
+        self.runButton = Button(self.masterFrame,
+                                text="Run",
+                                command=self.findAndSaveAttachment)
+
     # add new line to window to search and dl another file
     def addReportLine(self):
         # create frame to house the newly added widgets
@@ -72,6 +77,11 @@ class Application(Frame):
 
     def changeFileName(self, k, v):
         # change filename of attachment before saving using key-value pair
+
+    def createDictionary(self):
+        # create dictionary containing key-value pairs
+            # key   = filename of picture + extension
+            # value = full save path + save as name
 
     def saveProfile(self):
         # save all settings, filenames, file paths, etc to a text file
