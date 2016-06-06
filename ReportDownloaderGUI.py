@@ -39,6 +39,9 @@ class Application(Frame):
         # frame to contain run button below attachment lines
         self.frame4 = Frame(self.masterFrame)
         self.frame4.grid(row=3, column=0)
+        # frame for live text widget
+        self.frame5 = Frame(self.masterFrame)
+        self.frame5.grid(row=0, column=1, rowspan=5)
 
         # add labels
         self.screenshotLabel = Label(self.frame1,
@@ -53,6 +56,15 @@ class Application(Frame):
         self.screenshotEntry.delete(0, END)
         self.screenshotEntry.insert(0, "C:\\docs\\pics\\")
         self.screenshotEntry.grid(row=0, column=1)
+
+        # text widget to display live updates
+        self.liveText = Text(self.frame5,
+                             wrap=WORD,
+                             width=40,
+                             height=20)
+        self.liveText.insert(END,
+                             "This is where you'll see live updates from the program as it runs.\n")
+        self.liveText.grid(row=0, column=0)
 
         # add buttons
         # add button to create attachment lines
