@@ -121,6 +121,11 @@ class Application(Frame):
         self.stringVarsB.insert(self.lineCount, self.entry2Var)
 
     def deleteReportLine(self):
+        try:
+            self.stringVarsA.remove(self.stringVarsA[self.lineCount - 1])
+            self.stringVarsB.remove(self.stringVarsB[self.lineCount - 1])
+        except:
+            self.liveText.insert(END, "Nothing to delete!\n")
         for child in self.frame3.grid_slaves():
             if int(child.grid_info()["row"]) >= self.lineCount:
                 child.destroy()
@@ -129,7 +134,6 @@ class Application(Frame):
             self.lineCount = 0
 
     def createDictionary(self):
-        # http://stackoverflow.com/questions/24282331/getting-values-of-dynamically-generated-entry-fields-using-tkinter
         # create dictionary containing key-value pairs
             # key   = filename of picture + extension
             # value = full save path + save as name
