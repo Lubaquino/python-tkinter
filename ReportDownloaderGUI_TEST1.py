@@ -16,7 +16,6 @@ class Application(Frame):
         self.frame1 = Frame(self.masterFrame)
         self.frame2 = Frame(self.masterFrame)
         self.frame3 = Frame(self.masterFrame)
-        self.frame4 = Frame(self.masterFrame)
 
         self.addReportButton = Button(self.frame2,
                                       text="Add",
@@ -24,16 +23,14 @@ class Application(Frame):
         self.deleteReportButton = Button(self.frame2,
                                          text="Delete",
                                          command=self.deleteLine)
-        self.runButton = Button(self.frame4,
+        self.runButton = Button(self.frame2,
                                 text="Print",
                                 command=self.printStuff)
 
         self.masterFrame.grid(row=0, column=0)
-
         self.frame1.grid(row=0, column=0)
-        self.frame2.grid(row=2, column=0)
-        self.frame3.grid(row=3, column=0)
-        self.frame4.grid(row=2, column=1)
+        self.frame2.grid(row=1, column=0)
+        self.frame3.grid(row=2, column=0)
 
         self.addReportButton.grid(row=0, column=0)
         self.deleteReportButton.grid(row=0, column=1)
@@ -43,7 +40,7 @@ class Application(Frame):
         self.lineCount += 1
 
         self.newReportFrame = Frame(self.frame3)
-        self.newReportFrame.pack()
+        self.newReportFrame.grid(row=self.lineCount, column=0)
 
         self.label1 = Label(self.newReportFrame,
                             text="A")
@@ -81,8 +78,12 @@ class Application(Frame):
         print(list(self.stringVarsB))
 
     def deleteLine(self):
-        for child in self.frame3.pack_slaves():
-            child.destroy()
+        for child in self.frame3.grid_slaves():
+            if int(child.grid_info()["row"]) >= self.lineCount:
+                child.destroy()
+        self.lineCount -= 1
+        if self.lineCount < 0:
+            self.lineCount = 0
 
 if __name__ == '__main__':
     root = Tk()
