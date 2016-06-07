@@ -16,6 +16,8 @@ class Application(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.reportEmailDict = {}
+        self.stringVarsA = []
+        self.stringVarsB = []
         self.lineCount = 0
         self.pack()
         self.createWidgets()
@@ -116,6 +118,9 @@ class Application(Frame):
         self.dButton.config(command=self.newReportFrame.destroy)
         self.dButton.bind("<Button-1>", lambda e: self.reduceLineCount())
         self.dButton.grid(row=0, column=4)
+
+        self.stringVarsA.insert(self.lineCount, self.entry1Var)
+        self.stringVarsB.insert(self.lineCount, self.entry2Var)
 
     def reduceLineCount(self):
         self.lineCount -= 1
