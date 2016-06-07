@@ -16,6 +16,7 @@ class Application(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.reportEmailDict = {}
+        self.lineCount = 0
         self.pack()
         self.createWidgets()
 
@@ -61,7 +62,7 @@ class Application(Frame):
                              width=40,
                              height=20)
         self.liveText.insert(END,
-                             "This is where you'll see live updates from the program as it runs.\n")
+                             "This is where you'll see the live activity feed from the program.\n")
         self.liveText.grid(row=0, column=0)
 
         # add buttons
@@ -78,6 +79,9 @@ class Application(Frame):
 
     # add new line to window to search and dl another file
     def addReportLine(self):
+        # increase our count of the number of lines on the GUI
+        self.lineCount += 1
+
         # create frame to house the newly added widgets
         self.newReportFrame = Frame(self.frame3)
         self.newReportFrame.pack()
@@ -110,7 +114,11 @@ class Application(Frame):
         self.dButton = Button(self.newReportFrame,
                               text="Click to delete this line")
         self.dButton.config(command=self.newReportFrame.destroy)
+        self.dButton.bind("<Button-1>", lambda e: self.reduceLineCount())
         self.dButton.grid(row=0, column=4)
+
+    def reduceLineCount(self):
+        self.lineCount -= 1
 
     def createDictionary(self):
         # create dictionary containing key-value pairs
