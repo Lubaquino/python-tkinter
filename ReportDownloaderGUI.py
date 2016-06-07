@@ -121,6 +121,7 @@ class Application(Frame):
         self.lineCount -= 1
 
     def createDictionary(self):
+        # http://stackoverflow.com/questions/24282331/getting-values-of-dynamically-generated-entry-fields-using-tkinter
         # create dictionary containing key-value pairs
             # key   = filename of picture + extension
             # value = full save path + save as name
