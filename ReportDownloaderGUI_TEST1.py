@@ -78,6 +78,8 @@ class Application(Frame):
         print(list(self.stringVarsB))
 
     def deleteLine(self):
+        self.stringVarsA.remove(self.stringVarsA[self.lineCount - 1])
+        self.stringVarsB.remove(self.stringVarsB[self.lineCount - 1])
         for child in self.frame3.grid_slaves():
             if int(child.grid_info()["row"]) >= self.lineCount:
                 child.destroy()
