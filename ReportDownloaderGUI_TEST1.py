@@ -65,11 +65,6 @@ class Application(Frame):
         self.stringVarsA.insert(self.lineCount, self.entry1Var)
         self.stringVarsB.insert(self.lineCount, self.entry2Var)
 
-    def reduceCount(self):
-        self.lineCount -= 1
-        self.stringVarsA.remove(self.stringVarsA[self.lineCount])
-        self.stringVarsB.remove(self.stringVarsB[self.lineCount])
-
     def printStuff(self):
         for i in range(self.lineCount):
             print(self.stringVarsA[i], ", ", self.stringVarsB[i])
@@ -78,8 +73,11 @@ class Application(Frame):
         print(list(self.stringVarsB))
 
     def deleteLine(self):
-        self.stringVarsA.remove(self.stringVarsA[self.lineCount - 1])
-        self.stringVarsB.remove(self.stringVarsB[self.lineCount - 1])
+        try:
+            self.stringVarsA.remove(self.stringVarsA[self.lineCount - 1])
+            self.stringVarsB.remove(self.stringVarsB[self.lineCount - 1])
+        except:
+            print("Nothing to delete, brother!")
         for child in self.frame3.grid_slaves():
             if int(child.grid_info()["row"]) >= self.lineCount:
                 child.destroy()
