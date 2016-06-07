@@ -73,11 +73,16 @@ class Application(Frame):
                                       text="Add Report",
                                       command=self.addReportLine)
         self.addReportButton.grid(row=0, column=1)
+        # delete button to delete lines
+        self.deleteReportButton = Button(self.frame2,
+                                         text="Delete Report",
+                                         command=self.deleteReportLine)
+        self.deleteReportButton.grid(row=0, column=2)
         # create button to run the search and download on what is in the entry fields
-        self.runButton = Button(self.frame4,
+        self.runButton = Button(self.frame2,
                                 text="Run",
                                 command=self.createDictionary)
-        self.runButton.grid(row=0, column=2)
+        self.runButton.grid(row=0, column=3)
 
     # add new line to window to search and dl another file
     def addReportLine(self):
@@ -86,7 +91,7 @@ class Application(Frame):
 
         # create frame to house the newly added widgets
         self.newReportFrame = Frame(self.frame3)
-        self.newReportFrame.pack()
+        self.newReportFrame.grid(row=self.lineCount, column=0)
 
         # create label to indicate what entry widget is used for
         self.label1 = Label(self.newReportFrame,
@@ -112,18 +117,16 @@ class Application(Frame):
         self.entry2Var.set("Enter full save path and new file name")
         self.entry2.grid(row=0, column=3)
 
-        # create button that deletes all widgets in new frame and self
-        self.dButton = Button(self.newReportFrame,
-                              text="Click to delete this line")
-        self.dButton.config(command=self.newReportFrame.destroy)
-        self.dButton.bind("<Button-1>", lambda e: self.reduceLineCount())
-        self.dButton.grid(row=0, column=4)
-
         self.stringVarsA.insert(self.lineCount, self.entry1Var)
         self.stringVarsB.insert(self.lineCount, self.entry2Var)
 
-    def reduceLineCount(self):
+    def deleteReportLine(self):
+        for child in self.frame3.grid_slaves():
+            if int(child.grid_info()["row"]) >= self.lineCount:
+                child.destroy()
         self.lineCount -= 1
+        if self.lineCount < 0:
+            self.lineCount = 0
 
     def createDictionary(self):
         # http://stackoverflow.com/questions/24282331/getting-values-of-dynamically-generated-entry-fields-using-tkinter
