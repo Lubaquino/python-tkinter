@@ -107,31 +107,41 @@ class Application(Frame):
     def deleteReportLine(self):
 
         try:
+            self.liveText.insert(END, "Report line deleted.\n")
             self.stringVarsA.remove(self.stringVarsA[self.lineCount - 1])
             self.stringVarsB.remove(self.stringVarsB[self.lineCount - 1])
-            self.liveText.insert(END, "Report line deleted.\n")
+
+            for child in self.frame3.grid_slaves():
+                if int(child.grid_info()["row"]) == self.lineCount:
+                    child.destroy()
+
+            self.lineCount -= 1
+
         except:
             self.liveText.insert(END, "Nothing to delete!\n")
 
-        for child in self.frame3.grid_slaves():
-            if int(child.grid_info()["row"]) == self.lineCount:
-                child.destroy()
-
-        self.lineCount -= 1
-
-        if self.lineCount < 0:
-            self.lineCount = 0
+            if self.lineCount < 0:
+                self.lineCount = 0
 
     def printStuff(self):
         self.liveText.insert(END, "Data printed to console.\n")
+        print(self.lineCount)
         for i in range(self.lineCount):
             print(self.stringVarsA[i], ", ", self.stringVarsB[i])
             print(self.stringVarsA[i].get(), ", ", self.stringVarsB[i].get())
         print(list(self.stringVarsA))
         print(list(self.stringVarsB))
+        print(self.createDictionary())
 
     def createDictionary(self):
-        return None
+        listA = []
+        listB = []
+        for a in self.stringVarsA:
+            listA.append(a.get())
+        for b in self.stringVarsB:
+            listB.append(b.get())
+        self.reportEmailDict = dict(zip(listA, listB))
+        return self.reportEmailDict
 
     def findAndSaveAttachment(self, k, v):
         self.findAttachment(k, v)
