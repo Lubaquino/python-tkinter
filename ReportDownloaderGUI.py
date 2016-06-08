@@ -138,23 +138,22 @@ class Application(Frame):
 
         # add case for user clicking deleting more than necessary
         try:
+            self.liveText.insert(END, "Report line deleted.\n")
+            # remove corresponding stringvars from each list to avoid memory leak
             self.stringVarsA.remove(self.stringVarsA[self.lineCount - 1])
             self.stringVarsB.remove(self.stringVarsB[self.lineCount - 1])
-            # update live feed
-            self.liveText.insert(END, "Report line deleted.\n")
+            # if there is a frame whose row equals the line count, then delete it
+            for child in self.frame3.grid_slaves():
+                if int(child.grid_info()["row"]) == self.lineCount:
+                    child.destroy()
+            # update the line count
+            self.lineCount -= 1
         except:
+            # update live feed
             self.liveText.insert(END, "Nothing to delete!\n")
-
-        # if there is a frame whose row equals the line count, then delete it
-        for child in self.frame3.grid_slaves():
-            if int(child.grid_info()["row"]) == self.lineCount:
-                child.destroy()
-
-        self.lineCount -= 1
-
-        # the line count should never be < 0
-        if self.lineCount < 0:
-            self.lineCount = 0
+            # the line count should never be < 0
+            if self.lineCount < 0:
+                self.lineCount = 0
 
     def createDictionary(self):
         # create dictionary containing key-value pairs
