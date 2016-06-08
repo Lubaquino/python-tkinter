@@ -160,7 +160,17 @@ class Application(Frame):
         # create dictionary containing key-value pairs
             # key   = filename of picture + extension
             # value = full save path + save as name
-        return None
+        # create temp lists to store the values of stringvars in each list
+        listA = []
+        listB = []
+        # first, get each value of the item from the stringvar lists
+        for a in self.stringVarsA:
+            listA.append(a.get())
+        for b in self.stringVarsB:
+            listB.append(b.get())
+        # then, zip each key-value pair in a dict method and return it
+        self.reportEmailDict = dict(zip(listA, listB))
+        return self.reportEmailDict
 
     def saveProfile(self):
         # save all settings, filenames, file paths, etc to a text file
