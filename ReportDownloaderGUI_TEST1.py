@@ -123,6 +123,7 @@ class Application(Frame):
             self.lineCount = 0
 
     def printStuff(self):
+        self.liveText.insert(END, "Data printed to console.\n")
         for i in range(self.lineCount):
             print(self.stringVarsA[i], ", ", self.stringVarsB[i])
             print(self.stringVarsA[i].get(), ", ", self.stringVarsB[i].get())
