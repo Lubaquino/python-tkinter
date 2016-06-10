@@ -12,7 +12,7 @@ PAUSE = 2.5
 
 class Application(Frame):
 
-    # initialize app
+# initialize app
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.reportEmailDict = {}
@@ -22,34 +22,29 @@ class Application(Frame):
         self.pack()
         self.createWidgets()
 
-    # create the widgets
+# create the widgets
     def createWidgets(self):
-        # add frames
+# add frames
         self.masterFrame = Frame(self)
-        # frame for full file path of all screenshots and appending date on file save
         self.frame1 = Frame(self.masterFrame)
-        # frame for live text widget
         self.frame5 = Frame(self.masterFrame)
-        # frame for label and add report button
         self.frame2 = Frame(self.masterFrame)
-        # frame to contain run button below attachment lines
         self.frame4 = Frame(self.masterFrame)
-        # frame to house all attachment lines
         self.frame3 = Frame(self.masterFrame)
 
-        # add labels
+# add labels
         self.screenshotLabel = Label(self.frame1,
                                      text="Path to screenshots: ")
         self.appendDateLabel = Label(self.frame2,
                                      text="Include date on filename(s)? ")
 
-        # add screenshot path entry widget
+# add screenshot path entry widget
         self.screenshotEntryVar = StringVar()
         self.screenshotEntry = Entry(self.frame1,
                                      textvariable=self.screenshotEntryVar)
         self.screenshotEntryVar.set("C:\\docs\\pics\\")
 
-        # text widget to display live updates
+# text widget to display live updates
         self.liveText = Text(self.frame5,
                              wrap=WORD,
                              width=40,
@@ -57,7 +52,7 @@ class Application(Frame):
         self.liveText.insert(END,
                              "This is where you'll see the live activity feed from the program.\n")
 
-        # add buttons
+# add buttons
         # add button to create attachment lines
         self.addReportButton = Button(self.frame2,
                                       text="Add Report",
@@ -71,7 +66,7 @@ class Application(Frame):
                                 text="Run",
                                 command=self.createDictionary)
 
-        # frame each widget in the grid
+# frame each widget in the grid
         self.masterFrame.grid(row=0, column=0)
         self.frame1.grid(row=0, column=0)
         self.frame5.grid(row=1, column=0)
@@ -90,7 +85,7 @@ class Application(Frame):
         self.deleteReportButton.grid(row=0, column=2)
         self.runButton.grid(row=0, column=3)
 
-    # add new line to window to search and dl another file
+# add new line to window to search and dl another file
     def addReportLine(self):
         # increase our count of the number of lines on the GUI
         self.lineCount += 1
@@ -134,6 +129,7 @@ class Application(Frame):
         self.label2.grid(row=0, column=2)
         self.entry2.grid(row=0, column=3)
 
+# delete the last row in the widget
     def deleteReportLine(self):
 
         # add case for user clicking deleting more than necessary
@@ -155,10 +151,8 @@ class Application(Frame):
             if self.lineCount < 0:
                 self.lineCount = 0
 
+# build dictionary containing screenshots images and corresponding file paths
     def createDictionary(self):
-        # create dictionary containing key-value pairs
-            # key   = filename of picture + extension
-            # value = full save path + save as name
         # create temp lists to store the values of stringvars in each list
         listA = []
         listB = []
@@ -171,31 +165,32 @@ class Application(Frame):
         self.reportEmailDict = dict(zip(listA, listB))
         return self.reportEmailDict
 
+# save all settings, filenames, file paths, etc to a text file
     def saveProfile(self):
-        # save all settings, filenames, file paths, etc to a text file
         return None
 
+# load all settings, filenames, file paths, etc from a text file
     def loadProfile(self):
-        # load all settings, filenames, file paths, etc from a text file
         return None
 
+# find and save email attachment using key-value pair
     def findAndSaveAttachment(self, k, v):
-        # find and save email attachment using key-value pair
         self.findAttachment(k, v)
         self.saveAttachment(k, v)
 
+# find the attachment using key-value pair
     def findAttachment(self, k, v):
-        # find the attachment using key-value pair
         return k, v
 
+# save the attachment using key-value pair
     def saveAttachment(self, k, v):
-        # save the attachment using key-value pair
         return k, v
 
+# change filename of attachment before saving using key-value pair
     def changeFileName(self, k, v):
-        # change filename of attachment before saving using key-value pair
         return k, v
 
+# run the application
 if __name__ == '__main__':
     root = Tk()
     app = Application(master=root)
