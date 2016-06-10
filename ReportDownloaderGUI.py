@@ -1,5 +1,6 @@
 from pyautogui import *
 from tkinter import *
+from tkinter import messagebox
 from tkinter import ttk
 from time import sleep
 from datetime import date
@@ -31,6 +32,27 @@ class Application(Frame):
         self.frame2 = Frame(self.masterFrame)
         self.frame4 = Frame(self.masterFrame)
         self.frame3 = Frame(self.masterFrame)
+
+
+# create menubutton for File, Help, About
+        self.menubar = Menu(root)
+
+        self.filemenu = Menu(self.menubar,
+                             tearoff=0)
+        self.filemenu.add_command(label="Save Profile",
+                                  command=self.saveProfile)
+        self.filemenu.add_command(label="Load Profile",
+                                  command=self.loadProfile)
+        self.filemenu.add_separator()
+        self.filemenu.add_command(label="Quit",
+                                  command=root.quit)
+        self.menubar.add_cascade(label="File",
+                                 menu=self.filemenu)
+        self.menubar.add_command(label="About",
+                                 command=self.about)
+        self.menubar.add_command(label="Help",
+                                 command=self.help)
+        root.config(menu=self.menubar)
 
 # add labels
         self.screenshotLabel = Label(self.frame1,
@@ -189,6 +211,16 @@ class Application(Frame):
 # change filename of attachment before saving using key-value pair
     def changeFileName(self, k, v):
         return k, v
+
+# create 2 messageboxes for about/help
+    def about(self):
+        messagebox.showinfo("About",
+                            "Written by: Chad Bartel\n" +
+                            "Using Python ver " + sys.version)
+
+    def help(self):
+        messagebox.showinfo("Help",
+                            "Gonna add something here.")
 
 # run the application
 if __name__ == '__main__':
