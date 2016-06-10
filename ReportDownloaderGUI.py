@@ -74,6 +74,11 @@ class Application(Frame):
         self.liveText.insert(END,
                              "This is where you'll see the live activity feed from the program.\n")
 
+# create scrollbars for text widget and attach
+        self.scrollY = Scrollbar(self.frame5)
+        self.liveText.config(yscrollcommand=self.scrollY.set)
+        self.scrollY.config(command=self.liveText.yview)
+
 # add buttons
         # add button to create attachment lines
         self.addReportButton = Button(self.frame2,
@@ -102,6 +107,7 @@ class Application(Frame):
         self.screenshotEntry.grid(row=0, column=1)
 
         self.liveText.grid(row=0, column=0)
+        self.scrollY.grid(row=0, column=1, sticky=N+S)
 
         self.addReportButton.grid(row=0, column=1)
         self.deleteReportButton.grid(row=0, column=2)
