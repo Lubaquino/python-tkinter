@@ -17,6 +17,7 @@ class Application(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.reportEmailDict = {}
+        self.screenshotPath = ""
         self.stringVarsA = []
         self.stringVarsB = []
         self.lineCount = 0
@@ -91,7 +92,7 @@ class Application(Frame):
         # create button to run the search and download on what is in the entry fields
         self.runButton = Button(self.frame2,
                                 text="Run",
-                                command=self.createDictionary)
+                                command=self.findAndSaveAttachment)
 
 # frame each widget in the grid
         self.masterFrame.grid(row=0, column=0)
@@ -159,10 +160,12 @@ class Application(Frame):
 
 # delete the last row in the widget
     def deleteReportLine(self):
-
-        # add case for user clicking deleting more than necessary
-        try:
-            self.liveText.insert(END, "Report line deleted.\n")
+        # the line count should never be < 0
+        if self.lineCount <= 0:
+            self.lineCount = 0
+            # update live feed
+            self.liveText.insert(END, "Nothing to delete!\n")
+        else:
             # remove corresponding stringvars from each list to avoid memory leak
             self.stringVarsA.remove(self.stringVarsA[self.lineCount - 1])
             self.stringVarsB.remove(self.stringVarsB[self.lineCount - 1])
@@ -172,12 +175,8 @@ class Application(Frame):
                     child.destroy()
             # update the line count
             self.lineCount -= 1
-        except:
             # update live feed
-            self.liveText.insert(END, "Nothing to delete!\n")
-            # the line count should never be < 0
-            if self.lineCount < 0:
-                self.lineCount = 0
+            self.liveText.insert(END, "Report line deleted.\n")
 
 # build dictionary containing screenshots images and corresponding file paths
     def createDictionary(self):
@@ -202,9 +201,12 @@ class Application(Frame):
         return None
 
 # find and save email attachment using key-value pair
-    def findAndSaveAttachment(self, k, v):
-        self.findAttachment(k, v)
-        self.saveAttachment(k, v)
+    def findAndSaveAttachment(self):
+        self.screenshotPath = self.screenshotEntryVar.get()
+        self.createDictionary()
+        for k, v in self.reportEmailDict.items():
+            self.findAttachment(k, v)
+            self.saveAttachment(k, v)
 
 # find the attachment using key-value pair
     def findAttachment(self, k, v):
