@@ -208,76 +208,12 @@ class Application(Frame):
     def findAndSaveAttachment(self):
         self.createDictionary()
         for k, v in self.reportEmailDict.items():
-            self.findAttachment(k, v)
-
-# find the attachment using key-value pair
-    def findAttachment(self, k, v):
-        self.liveText.insert(END, "Searching for " + str(k) + "...\n")
-        root.update_idletasks()
-        try:
-            while not locateCenterOnScreen(self.screenshotEntry.get() + k):
-                sleep(0.25)
-            x1, y1 = locateCenterOnScreen(self.screenshotEntry.get() + k)
-            self.liveText.insert(END, "Found " + str(k) + "!\n")
-            root.update_idletasks()
-            click(x1, y1)
-            self.liveText.insert(END, "Looking for attachment...\n")
-            root.update_idletasks()
-            while not locateCenterOnScreen(self.screenshotEntry.get() + 'excel-icon-email.png'):
-                sleep(0.25)
-            x2, y2 = locateCenterOnScreen(self.screenshotEntry.get() + 'excel-icon-email.png')
-            self.liveText.insert(END, "Found attachment!\n")
-            root.update_idletasks()
-            moveTo(x2, y2)
-            moveRel(31, -10)
-            click()
-            self.saveAttachment(k, v)
-        except:
-            self.liveText.insert(END, "Could not find " + str(k) + "\n")
-            root.update_idletasks()
-
-# save the attachment using key-value pair
-    def saveAttachment(self, k, v):
-        self.liveText.insert(END, "Looking for active \"OK\" button on download window...\n")
-        root.update_idletasks()
-        while not locateCenterOnScreen(self.screenshotEntry.get() + 'ok-active.png'):
-            sleep(0.25)
-        x1, y1 = locateCenterOnScreen(self.screenshotEntry.get() + 'ok-active.png')
-        self.liveText.insert(END, "Found \"OK\" button!\n")
-        root.update_idletasks()
-        click(x1, y1)
-        self.changeFileName(k, v)
-        self.liveText.insert(END, "Looking for back button in Gmail window...\n")
-        root.update_idletasks()
-        x2, y2 = locateCenterOnScreen(self.screenshotEntry.get() + 'gmail-back-button.png')
-        self.liveText.insert(END, "Found back button in Gmail window!\n")
-        root.update_idletasks()
-        click(x2, y2)
+            print(k, v)
+        return None
 
 # change filename of attachment before saving using key-value pair
     def changeFileName(self, k, v):
-        if self.checkVar.get():
-            # append date to end of filename
-            self.liveText.insert(END, "Appending today's date to the end of " + str(v) + ".\n")
-            root.update_idletasks()
-            typewrite(str(v) + str(date.today()), interval=0.1)
-            self.liveText.insert(END, "Looking for \"Save\" button...\n")
-            root.update_idletasks()
-            x1, y1 = locateCenterOnScreen(self.screenshotEntry.get() + 'save-active.png')
-            click(x1, y1)
-            self.liveText.insert(END, "Found \"Save\" button! File saved!\n")
-            root.update_idletasks()
-        else:
-            # just save it as the filename provided
-            self.liveText.insert(END, "Saving file as " + str(v) + ".\n")
-            root.update_idletasks()
-            typewrite(str(v), interval=0.1)
-            self.liveText.insert(END, "Looking for \"Save\" button...\n")
-            root.update_idletasks()
-            x1, y1 = locateCenterOnScreen(self.screenshotEntry.get() + 'save-active.png')
-            click(x1, y1)
-            self.liveText.insert(END, "Found \"Save\" button! File saved!\n")
-            root.update_idletasks()
+        return None
 
 # create 2 messageboxes for about/help
     def about(self):
