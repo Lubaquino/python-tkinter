@@ -11,9 +11,10 @@ from datetime import date
 FAILSAFE = True
 PAUSE = 2.5
 
+
 class Application(Frame):
 
-# initialize app
+    # initialize app
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.reportEmailDict = {}
@@ -26,7 +27,7 @@ class Application(Frame):
 
 # create the widgets
     def createWidgets(self):
-# add frames
+        # add frames
         self.masterFrame = Frame(self)
         self.frame1 = Frame(self.masterFrame)
         self.frame5 = Frame(self.masterFrame)
